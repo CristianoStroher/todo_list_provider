@@ -2,10 +2,12 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:synchronized/synchronized.dart';
+import 'package:todo_list_provider/app/core/database/sqlite_migration_factory.dart';
 
+//! Na pasta CORE guardamos as informações, componentes genéricos e utilitarios
 class SqliteConnectionFactory {
 
-  //varias para versao e nome do banco de dados
+  //varias para versao e nome do banco de dados 
   static const _VERSION = 1;
   static const _DATABASE_NAME = 'TODO_LIST_PROVIDER';
 
@@ -57,8 +59,27 @@ class SqliteConnectionFactory {
   Future<void> _onConfigure(Database db) async {
     await db.execute('PRAGMA foreign_keys = on'); // vincular as chaves estrangeiras
   }
-  Future<void> _onCreate(Database db, int version) async {}
-  Future<void> _onUpgrade(Database db, int oldVersion,int version) async {}
+  Future<void> _onCreate(Database db, int version) async {
+    // instanciamos e comitamos a migration
+    final batch = db.batch();
+    //tmabém precisamos recuperar nossas migrations
+    final migrations = SqliteMigrationFactory().getCreateMigration();
+    // passamos pela lista exceutando cada versão de create criado.
+    for(var migration in migrations) {
+      migration.create(batch);
+    }
+    batch.commit();
+  }
+  Future<void> _onUpgrade(Database db, int oldVersion,int version) async {
+    final batch = db.batch();
+    //tmabém precisamos recuperar nossas migrations
+    final migrations = SqliteMigrationFactory().getUpdateMigration(oldVersion);
+    // passamos pela lista exceutando cada versão de create criado.
+    for(var migration in migrations) {
+      migration.update(batch);
+    }
+    batch.commit();
+  }
   Future<void> _onDowngrade(Database db, int oldVersion,int version) async {}
 
 }
