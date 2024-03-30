@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-//nessa classe vamos encapsular nossas estruturas.
+//nessa classe vamos encapsular nossas estruturas especialmente as rotas.
 class TodoListPage extends StatelessWidget {
 
   final List<SingleChildWidget>? _bindings;

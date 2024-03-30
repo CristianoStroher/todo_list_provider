@@ -39,6 +39,7 @@ final sqliteAdmConnection = SqliteAdmConnection();
    Widget build(BuildContext context) {
        return MaterialApp(
         title: 'Todo List Provider',
+        initialRoute: '/login',
         routes: {
           ...AuthModule().routers
         },
