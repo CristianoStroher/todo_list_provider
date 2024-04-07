@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/database/sqlite_adm_connection.dart';
-import 'package:todo_list_provider/app/core/database/sqlite_connection_factory.dart';
 import 'package:todo_list_provider/app/modules/auth/auth_module.dart';
 import 'package:todo_list_provider/app/modules/splash/splash_page.dart';
 
@@ -24,7 +23,7 @@ final sqliteAdmConnection = SqliteAdmConnection();
 @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addObserver(sqliteAdmConnection);
+    WidgetsBinding.instance.addObserver(sqliteAdmConnection); // Tinha instance?
   }
 
   //! adicionamos o dispose para encerrar a observação apos realiza
@@ -32,7 +31,7 @@ final sqliteAdmConnection = SqliteAdmConnection();
   @override
   void dispose() {
     super.dispose();
-    WidgetsBinding.instance?.removeObserver(sqliteAdmConnection);
+    WidgetsBinding.instance.removeObserver(sqliteAdmConnection); //! tinha ? no instance
   }
 
    @override
