@@ -40,25 +40,38 @@ class LoginPage extends StatelessWidget {
                                   ),
                                   ElevatedButton(
                                       onPressed: (){},
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: const Text(
-                                          'Login',
-                                          style: TextStyle(color: Colors.white),),
-                                      ),
                                       style: ElevatedButton.styleFrom(
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(20),
                                         ), 
                                     ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Text(
+                                          'Login',
+                                          style: TextStyle(color: Colors.white),),
+                                      ),
                                   ),                                                                 ],
                               )
                             ],
                           ),
                           ),
                         ),
-                      ],
-                    
+                        const SizedBox(height: 20,),
+                        Expanded(
+                          child: Container(
+                          decoration: BoxDecoration(
+                          color: const Color(0xffF0F3F7),
+                          border: Border(
+                            top: BorderSide(
+                              width: 2,
+                              color: Colors.grey.withAlpha(50),
+                              ),
+                              ),
+                          ),
+                          ),
+                        ),
+                      ],                    
                     ),
                   ),
                 ),
