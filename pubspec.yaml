@@ -1,3 +1,104 @@
+Cristiano Stroher
+.cristianostroher
+Não perturbar
+
+Estou usando o flutter_getit e gostaria de poder disponibilizar uma instancia unica para toda a minha aplicacao. Atualmente eu consegui fazendo um funcao na controller e chamando essa funcao no INIT() da page. Porem nao queria ter que fazer isso para todos os modulos da minha aplicacao tendo que repetir a mesma funcao em todo lugar e em todas as pages. Como posso fazer isso ??
+Alguem teve esse problema onde ja alterei as versões e não tive solução! Resolving dependencies... Because no versions of flutter_signin_button match >2.0.0 <3.0.0 and flutter_signin_button 2.0.0 depends on font_awesome_flutter ^9.0.0, flutter_signin_button ^2.0.0 requires font_awesome_flutter ^9.0.0. And because every version of sign_in_button depends on font_awesome_flutter ^10.0.0, flutter_signin_button ^2.0.0 is incompatible with sign_in_button. So, because todo_list_provider depends on both sign_in_button ^3.0.0 and flutter_signin_button ^2.0.0, version solving failed. @Mentores 
+Bom dia, meus amigos! Mais uma vez por aqui. Bom, estou avançando no curso (google login - hands on provider e sqlite), e durante a aplicação da aula o código em si não apresentou erro no momento de fazer login com o google, porém ele não registrou no meu firebase. Já procurei no fórum e não vi nada parecido. Segue a imagem do erro que aparece quando tento realizar login com o google. Agradeço a atenção, e paciência de todos.
+Imagem
+Pessoal, boa tarde. Alguém já conseguiu implementar reconhecimento facial no Flutter, utilizando ML Kit do Firebase ou alguma alternativa? Somente a autenticação biométrica do smartphone não resolve meu problema, preciso garantir que a pessoa seja quem diz ser.
+Alguém já passou por este erro, ../.pub-cache/hosted/pub.dev/flutter_math_fork-0.5.0/lib/src/widgets/selection/handle_overlay.dart:60:40: Error: Member not found: 'fadeDuration'. duration: TextSelectionOverlay.fadeDuration, vsync: this); Flutter : 3.19.4 E claro, que possa compartilhar uma solução, obrigado 🤝
+@Mentores Boa noite, alguém já passou pelo problema "storing crashdata" ao tentar abrir um emulador Android no ambiente Windows? Usei AVDs por muito tempo, depois fiquei um tempo sem utilizar, e quando voltei a codificar, me deparei com esta situação. Detalhe: o problema ocorre em qualquer IDE, e já removi e reinstalei tanto IDEs como SDKs, e o problema persiste. Obrigado.
+Conflito entre versões/dependencias flutter_signin_button: ^2.0.0 x sign_in_button: ^3.0.0
+Cristiano Stroher
+AP
+ — Ontem às 22:10
+Alguem teve esse problema onde ja alterei as versões e não tive solução!
+Resolving dependencies...
+Because no versions of flutter_signin_button match >2.0.0 <3.0.0 and flutter_signin_button 2.0.0 depends on font_awesome_flutter ^9.0.0, flutter_signin_button ^2.0.0 requires font_awesome_flutter ^9.0.0.
+And because every version of sign_in_button depends on font_awesome_flutter ^10.0.0, flutter_signin_button ^2.0.0 is incompatible with sign_in_button.
+So, because todo_list_provider depends on both sign_in_button ^3.0.0 and flutter_signin_button ^2.0.0, version solving failed. @Mentores 
+Cristiano Stroher
+AP
+ — Ontem às 23:35
+Percebi que a versão nao bate mas inseri no pubspec orientação para descrimar versão mas o erro se mantem.   sign_in_button: ^3.2.0
+  google_fonts: ^2.1.1
+  flutter_signin_button: ^2.0.0
+
+dependency_overrides:
+  flutter_signin_button:
+    font_awesome_flutter: ^9.0.0
+  sign_in_button:
+    font_awesome_flutter: ^10.0.0
+Marcus Brasizza — Ontem às 23:36
+Amanha manda seu app p mim, tem como?
+Cristiano Stroher
+AP
+ — Ontem às 23:41
+ta no repositorio
+https://github.com/CristianoStroher/todo_list_provider.git
+GitHub
+GitHub - CristianoStroher/todo_list_provider
+Contribute to CristianoStroher/todo_list_provider development by creating an account on GitHub.
+GitHub - CristianoStroher/todo_list_provider
+Marcus Brasizza — Hoje às 08:07
+Blz eu vejo dq a pouco
+Marcus Brasizza — Hoje às 08:46
+@Cristiano Stroher
+se vc olhar la no package vc vai ve q teve um cara q fez um PR no projeto
+pra atualizar as dependencias
+troca pra isso aqui
+flutter_signin_button:
+    git: 
+      url: https://github.com/itamarjp/Flutter-Google-Sign-in-Button.git
+      ref: patch-1
+Cristiano Stroher
+AP
+ — Hoje às 13:51
+eu ia fazer isso tmb... vou fazer e comento se deu certo
+Marcus Brasizza — Hoje às 13:55
+eu testei e foi
+Cristiano Stroher
+AP
+ — Hoje às 14:32
+pois e eu coloquei ele não reclamou de dependencias porém deu outros erros no console... chegou a tentar abrir o emulador? 
+BUILD FAILED in 6s
+Error: Gradle task assembleDebug failed with exit code 1 
+Cristiano Stroher
+AP
+ — Hoje às 14:41
+Apesar da dependencia estar ok ainda da esse erro mesmo.. agora nem ideia o que pode ser.
+Marcus Brasizza — Hoje às 14:41
+sim abri sim
+esse erro é na compilacao do android nao do flutter em si
+Cristiano Stroher
+AP
+ — Hoje às 14:42
+vix... vou reiniciar o pc... vamos ver o que rola
+Cristiano Stroher
+AP
+ — Hoje às 14:53
+nada.. agora ele deu esse erro Configuration 'Flutter (Pixel 5 API 31)' is missing in 'launch.json'.
+caracas... tava funcionando tudo....
+Marcus Brasizza — Hoje às 14:58
+qual versao q ta seu flutter ?
+Marcus Brasizza — Hoje às 15:06
+@Cristiano Stroher
+Imagem
+Cristiano Stroher
+AP
+ — Hoje às 16:54
+Flutter 3.19.2 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision 7482962148 (7 weeks ago) • 2024-02-27 16:51:22 -0500
+Engine • revision 04817c99c9
+Tools • Dart 3.3.0 • DevTools 2.31.1
+GitHub
+GitHub - flutter/flutter: Flutter makes it easy and fast to build b...
+Flutter makes it easy and fast to build beautiful apps for mobile and beyond - flutter/flutter
+GitHub - flutter/flutter: Flutter makes it easy and fast to build b...
+muito doido isso
+Marcus Brasizza — Hoje às 16:55
+faz isso aqui
 name: todo_list_provider
 description: Meu primeiro Projeto.
 # The following line prevents the package from being accidentally published to
@@ -34,12 +135,124 @@ dependencies:
   sqflite: ^2.3.2
   path: ^1.9.0
   sign_in_button: ^3.2.0
-  google_fonts: ^2.1.0
-  flutter_signin_button:  
+  google_fonts: ^6.2.1
+  flutter_signin_button:
     git: 
       url: https://github.com/itamarjp/Flutter-Google-Sign-in-Button.git
       ref: patch-1
-  
+
+  font_awesome_flutter:
+
+    
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+  synchronized: ^3.1.0+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^3.0.2
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+... (3 linhas)
+Recolher
+pubspec.yaml
+5 KB
+substitue pelo meu aqui
+Cristiano Stroher
+AP
+ — Hoje às 17:03
+so olha a loucuragem
+Imagem
+﻿
+name: todo_list_provider
+description: Meu primeiro Projeto.
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.5 <4.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.2
+  sqflite: ^2.3.2
+  path: ^1.9.0
+  sign_in_button: ^3.2.0
+  google_fonts: ^6.2.1
+  flutter_signin_button:
+    git: 
+      url: https://github.com/itamarjp/Flutter-Google-Sign-in-Button.git
+      ref: patch-1
+
+  font_awesome_flutter:
 
     
 
@@ -99,3 +312,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+pubspec.yaml
+5 KB
