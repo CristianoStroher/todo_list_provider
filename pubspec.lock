@@ -89,10 +89,11 @@ packages:
   flutter_signin_button:
     dependency: "direct main"
     description:
-      name: flutter_signin_button
-      sha256: a063ecc5d5308377e103c9c3a89084abf15fca4440636233af6a13abacd5dcae
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: patch-1
+      resolved-ref: "8a615ad7cf126ee2a3b45e69c833ed45cfff83a5"
+      url: "https://github.com/itamarjp/Flutter-Google-Sign-in-Button.git"
+    source: git
     version: "2.0.0"
   flutter_test:
     dependency: "direct dev"
@@ -103,10 +104,10 @@ packages:
     dependency: transitive
     description:
       name: font_awesome_flutter
-      sha256: "1f93e5799f0e6c882819e8393a05c6ca5226010f289190f2242ec19f3f0fdba5"
+      sha256: "275ff26905134bcb59417cf60ad979136f1f8257f2f449914b2c3e05bbb4cd6f"
       url: "https://pub.dev"
     source: hosted
-    version: "9.2.0"
+    version: "10.7.0"
   google_fonts:
     dependency: "direct main"
     description:
@@ -271,10 +272,18 @@ packages:
     dependency: "direct main"
     description:
       name: provider
-      sha256: "59471e0a4595e264625d3496af567ac85bdae1148ec985aff1e0555786f53ecf"
+      sha256: c8a055ee5ce3fd98d6fc872478b03823ffdb448699c6ebdbbc71d59b596fd48c
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.0"
+    version: "6.1.2"
+  sign_in_button:
+    dependency: "direct main"
+    description:
+      name: sign_in_button
+      sha256: "977b9b0415d2f3909e642275dfabba7919ba8e111324641b76cae6d1acbd183e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
