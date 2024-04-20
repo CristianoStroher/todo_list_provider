@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sign_in_button/sign_in_button.dart';
+import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
 
 class LoginPage extends StatelessWidget {
@@ -28,9 +29,9 @@ class LoginPage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20,), //!symetric para dar espaçamento horizontal e vertical
                           child: Form(child: Column(
                             children: [
-                              TextFormField(),
+                              const TodoListField(label: 'E-mail',),
                               const SizedBox(height: 20,),
-                              TextFormField(),
+                              const TodoListField(label: 'Senha', obscureText: true,),
                               const SizedBox(height: 10,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
