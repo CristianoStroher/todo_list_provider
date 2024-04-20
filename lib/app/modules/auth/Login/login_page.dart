@@ -29,9 +29,9 @@ class LoginPage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20,), //!symetric para dar espaçamento horizontal e vertical
                           child: Form(child: Column(
                             children: [
-                              const TodoListField(label: 'E-mail',),
+                              TodoListField(label: 'E-mail',),
                               const SizedBox(height: 20,),
-                              const TodoListField(label: 'Senha', obscureText: true,),
+                              TodoListField(label: 'Senha', obscureText: true,),
                               const SizedBox(height: 10,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
