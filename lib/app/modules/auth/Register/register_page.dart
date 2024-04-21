@@ -11,6 +11,7 @@ class RegisterPage extends StatelessWidget {
    Widget build(BuildContext context) {
        return Scaffold(
            appBar: AppBar(
+            centerTitle: false, // descentraliza o titulo
             backgroundColor: Colors.white,
             title: Column( //!colocamos em coluna para ficar um em cima do outro
               crossAxisAlignment: CrossAxisAlignment.start, //!alinhamento do texto
