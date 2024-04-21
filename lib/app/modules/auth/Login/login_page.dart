@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+// import 'package:flutter/widgets.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
@@ -87,7 +87,9 @@ class LoginPage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text('Não tem conta?'),
-                                TextButton(onPressed: (){},
+                                TextButton(onPressed: (){
+                                  Navigator.of(context).pushNamed('/register');//direcionando para a rota de registro
+                                },
                                 child: const Text('Cadastre-se'),
                                 ),
                                 ],
