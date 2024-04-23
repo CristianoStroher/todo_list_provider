@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "803868805505",
+    "project_id": "todo-list-provider-d3e0c",
+    "storage_bucket": "todo-list-provider-d3e0c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803868805505:android:c0b3f6e6fabf65f9310080",
+        "android_client_info": {
+          "package_name": "br.com.dataintegra.todo_list_provider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803868805505-ui6j5o6kphvftjdf6emnppvuj3hc0g3g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.dataintegra.todo_list_provider",
+            "certificate_hash": "00228713b9dbd9507bc2683f1cde5dbe6a7b3006"
+          }
+        },
+        {
+          "client_id": "803868805505-rtf334m9dmbvrk4vqpi2fhql9pukd31b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeO8OEebuMdR1eZhbugs0FlXBOP782-Gk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803868805505-rtf334m9dmbvrk4vqpi2fhql9pukd31b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
