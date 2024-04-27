@@ -1,13 +1,27 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
 
-class LoginPage extends StatelessWidget {
+
+class LoginPage extends StatefulWidget {
 
   const LoginPage({ super.key });
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  @override
+  void initState() {
+       
+    super.initState();
+      FirebaseFirestore.instance.collection("USERS").add({"email": "cristiano@gmail.com", "senha" : "12345"});
+  }
    @override
    Widget build(BuildContext context) {
        return Scaffold(

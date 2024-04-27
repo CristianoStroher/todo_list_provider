@@ -41,6 +41,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803868805505:android:0ce64b1519068e9b310080",
+        "android_client_info": {
+          "package_name": "br.com.dataintegra.todo_list_provider.as"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803868805505-rtf334m9dmbvrk4vqpi2fhql9pukd31b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeO8OEebuMdR1eZhbugs0FlXBOP782-Gk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803868805505-rtf334m9dmbvrk4vqpi2fhql9pukd31b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

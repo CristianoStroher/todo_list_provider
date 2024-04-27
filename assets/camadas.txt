@@ -1,0 +1,32 @@
+Core: A camada Core geralmente contém funcionalidades e classes essenciais
+que são usadas em todo o aplicativo. Isso pode incluir utilitários genéricos,
+como funções de conversão de dados, classes de configuração global, enums,
+exceções personalizadas, e outras classes de utilidade que são amplamente
+utilizadas em todo o aplicativo.
+
+Models: A camada Models é onde você define a estrutura de dados do seu
+aplicativo. Isso inclui classes que representam entidades de negócios,
+como usuários, produtos, pedidos, etc. As classes de modelo geralmente contêm
+atributos e métodos para acessar e manipular os dados associados a essas
+entidades.
+
+Modules: Os módulos são partes distintas e isoladas do seu aplicativo que
+agrupam funcionalidades relacionadas. Cada módulo pode conter seu próprio
+conjunto de telas, widgets, serviços e repositórios. Isso facilita a
+organização e a manutenção do código, especialmente em aplicativos maiores.
+Por exemplo, você pode ter um módulo de autenticação que inclui telas de
+login, registro e recuperação de senha, juntamente com os serviços e
+repositórios associados a essas funcionalidades.
+
+Repositories: A camada de Repositories é responsável por fornecer uma
+abstração sobre a origem dos dados para o restante do aplicativo.
+Em geral, os repositórios são usados para recuperar dados de fontes de
+dados externas, como APIs, bancos de dados locais ou remotos, e fornecer
+esses dados para as camadas superiores do aplicativo, como os serviços.
+
+Services: A camada de Serviços contém a lógica de negócios e as operações
+que não se encaixam diretamente nas camadas de UI ou de dados. Isso pode
+incluir a lógica de comunicação com APIs, processamento de dados, validação
+de entrada, manipulação de estado global do aplicativo, e assim por diante.
+Os serviços geralmente encapsulam funcionalidades específicas do aplicativo
+e são usados pelas camadas de UI e de dados conforme necessário.
