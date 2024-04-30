@@ -28,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
     _passwordEC.dispose();//libera a memoria
     _confirmPasswordEC.dispose();//
     super.dispose();
-    context.read<RegisterController>().removeListener(() {});//remove o listener
+    // context.read<RegisterController>().removeListener(() {});//remove o listener
   }
 
   @override
