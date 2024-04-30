@@ -13,11 +13,11 @@ class AuthModule extends TodoListModule {
         bindings: [
           ChangeNotifierProvider(create: (_) => LoginController()
           ),
-          ChangeNotifierProvider(create: (_) => RegisterController()
+          ChangeNotifierProvider(create: (context) => RegisterController(userService: context.read())//! registramos o controller do registro
           ),
         ],
         routers: {
           '/login': (context) => const LoginPage(),
-          '/register': (context) => const RegisterPage(),//! registramos a rota para o Registro/Cadastro
+          '/register': (context) => const RegisterPage(),//! como declaramos no app_Modulle através do provider, não precisamos instanciar.
         });
 }

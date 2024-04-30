@@ -16,7 +16,15 @@ conjunto de telas, widgets, serviços e repositórios. Isso facilita a
 organização e a manutenção do código, especialmente em aplicativos maiores.
 Por exemplo, você pode ter um módulo de autenticação que inclui telas de
 login, registro e recuperação de senha, juntamente com os serviços e
-repositórios associados a essas funcionalidades.
+repositórios associados a essas funcionalidades. 
+Dentro dos módulos, a CONTROLLER geralmente atua como a camada que
+lida com a interação do usuário e coordena as operações entre a camada
+de visualização (UI) e as camadas de serviços e repositórios.
+Sua principal responsabilidade é receber solicitações do usuário,
+interpretá-las e tomar as ações necessárias, como chamar os serviços
+apropriados para processamento de dados, acessar os repositórios para
+recuperar informações, e atualizar a interface do usuário conforme
+necessário.
 
 Repositories: A camada de Repositories é responsável por fornecer uma
 abstração sobre a origem dos dados para o restante do aplicativo.
@@ -30,3 +38,39 @@ incluir a lógica de comunicação com APIs, processamento de dados, validação
 de entrada, manipulação de estado global do aplicativo, e assim por diante.
 Os serviços geralmente encapsulam funcionalidades específicas do aplicativo
 e são usados pelas camadas de UI e de dados conforme necessário.
+
+EXEMPLO PRATICO CADAMADAS
+Camada Core: Imagine que na sua camada Core você tem uma classe chamada
+Utils que contém métodos úteis para manipulação de datas, como converter
+datas de um formato para outro. Também poderia incluir uma classe
+Constants para armazenar valores constantes usados em todo o aplicativo,
+como códigos de erro ou URLs de APIs.
+
+Camada Models: Aqui, você teria classes que representam as entidades do
+seu aplicativo. Por exemplo, uma classe Task com atributos como título,
+descrição, data de criação e status. Cada instância dessa classe
+representa uma tarefa na lista.
+
+Módulos: Digamos que você tenha um módulo de visualização (UI) para
+exibir e interagir com as tarefas. Este módulo pode conter telas como
+uma para exibir a lista de tarefas e outra para adicionar ou editar uma
+tarefa. Além disso, pode haver serviços e repositórios específicos para
+lidar com as operações relacionadas às tarefas, como criar, atualizar,
+excluir e listar tarefas.
+
+Camada de Repositories: Aqui, você teria uma classe TaskRepository
+responsável por fornecer uma abstração sobre a fonte de dados das tarefas.
+Por exemplo, essa classe poderia ter métodos para recuperar tarefas de um
+banco de dados local ou de uma API remota.
+
+Camada de Serviços: Você poderia ter um serviço chamado TaskService,
+que contém a lógica de negócios relacionada às tarefas. Por exemplo,
+métodos para validar os dados de uma nova tarefa antes de adicioná-la
+ao repositório, ou para atualizar o status de uma tarefa.
+
+Controllers (Controladores): Essa é a camada onde ocorre a interação
+do usuário. Por exemplo, você poderia ter um controlador chamado
+TaskController, que recebe os eventos do usuário, como clicar em um
+botão para adicionar uma nova tarefa. O controlador então chama os
+métodos apropriados do serviço e do repositório para realizar a ação
+solicitada e atualiza a interface do usuário conforme necessário.

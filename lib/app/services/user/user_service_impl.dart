@@ -12,7 +12,7 @@ class UserServiceImpl implements UserService {
 
   //metodo
   @override
-  Future<User?> registrer(String email, String password) =>
-       _userRepository.registrer(email, password);
+  Future<User?> register(String email, String password) =>
+       _userRepository.register(email, password);
 
 }
