@@ -95,6 +95,7 @@ Aqui, definimos a interface do usuário principal (`MyHomePage`). No
 corpo do `Scaffold`, usamos um `Consumer<Counter>`. Isso significa 
 que o widget `Text` dentro do `Consumer` será reconstruído sempre que
 o estado do `Counter` mudar. O texto exibido é o valor atual do contador.
+Watch - pagina inteira, consumer, objeto inteiro, select, somente parte do objeto.
 
 O botão "Increment" é um `ElevatedButton` que, quando pressionado,
 chama o método `increment()` no `Counter` fornecido pelo Provider
