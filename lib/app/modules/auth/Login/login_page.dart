@@ -18,7 +18,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
-       
+           
     super.initState();
       FirebaseFirestore.instance.collection("USERS").add({"email": "cristiano@gmail.com", "senha" : "12345"});
   }

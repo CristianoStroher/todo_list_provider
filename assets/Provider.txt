@@ -1,0 +1,107 @@
+1. **Modelo de Estado (State Model - counter.dart):**
+
+```dart
+import 'package:flutter/foundation.dart';
+
+class Counter with ChangeNotifier {
+  int _count = 0; // Estado do contador
+
+  int get count => _count; // Método para obter o valor atual do contador
+
+  void increment() {
+    _count++; // Incrementa o contador
+    notifyListeners(); // Notifica os consumidores sobre a mudança no estado
+  }
+}
+```
+
+Neste arquivo, criamos uma classe chamada `Counter` que
+estende `ChangeNotifier`, fornecido pelo Flutter. Isso permite
+que nossa classe notifique os consumidores (widgets que estão ouvindo
+as mudanças) quando o estado é alterado. A classe possui
+um campo `_count` para armazenar o estado do contador e
+um método `increment()` para aumentar o valor do contador em 1.
+
+2. **Configuração do Provider (main.dart):**
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'counter.dart'; // Importamos nosso modelo de estado
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => Counter(), // Inicia o Provider com uma instância de Counter
+      child: MaterialApp(
+        title: 'Counter App',
+        home: MyHomePage(),
+      ),
+    );
+  }
+}
+```
+
+No `main.dart`, definimos nossa classe `MyApp` como um
+widget `StatelessWidget`. Aqui, usamos o `ChangeNotifierProvider`, que
+é uma versão do Provider especializada em gerenciar modelos de estado
+que estendem `ChangeNotifier`. No parâmetro `create`, passamos uma
+função que retorna uma instância de `Counter`, que será fornecida
+a todos os widgets descendentes que precisarem dela.
+
+3. **Interface do Usuário (MyHomePage - main.dart):**
+
+```dart
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Counter App'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Consumer<Counter>(
+              builder: (context, counter, child) {
+                return Text(
+                  'Count: ${counter.count}',
+                  style: TextStyle(fontSize: 24),
+                );
+              },
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Provider.of<Counter>(context, listen: false).increment();
+              },
+              child: Text('Increment'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+Aqui, definimos a interface do usuário principal (`MyHomePage`). No
+corpo do `Scaffold`, usamos um `Consumer<Counter>`. Isso significa 
+que o widget `Text` dentro do `Consumer` será reconstruído sempre que
+o estado do `Counter` mudar. O texto exibido é o valor atual do contador.
+
+O botão "Increment" é um `ElevatedButton` que, quando pressionado,
+chama o método `increment()` no `Counter` fornecido pelo Provider
+Aqui, usamos `Provider.of<Counter>(context, listen: false)` para
+obter uma referência ao nosso modelo de estado `Counter` e, em seguida,
+chamamos `increment()` para atualizar o estado.
+
+Com isso, temos uma aplicação simples de contador que usa o Provider
+para gerenciar o estado e atualizar dinamicamente a interface do
+usuário conforme o contador é incrementado.

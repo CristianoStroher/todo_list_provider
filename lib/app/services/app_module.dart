@@ -18,7 +18,8 @@ class AppModule extends StatelessWidget {
    Widget build(BuildContext context) {
        return MultiProvider(
         providers: [
-          Provider(create: (_) => FirebaseAuth.instance),
+          Provider(
+            create: (_) => FirebaseAuth.instance),
           Provider(
             create: (_) => SqliteConnectionFactory(),
             lazy: false, //quando cria a aplicação ja instancia e cria a estrutura da migration

@@ -1,0 +1,31 @@
+S - Single Responsibility Principle (Princípio da Responsabilidade Única):
+Isso significa que uma classe deve ter apenas uma razão para mudar. Em
+outras palavras, uma classe deve ter uma única responsabilidade ou
+função dentro do sistema. Isso facilita a manutenção e evita efeitos
+colaterais inesperados quando você precisa fazer alterações.
+
+O - Open/Closed Principle (Princípio do Aberto/Fechado): Este princípio
+afirma que as classes devem estar abertas para extensão, mas fechadas para
+modificação. Isso significa que você pode estender o comportamento de uma
+classe sem modificar seu código-fonte. Isso é geralmente alcançado através
+do uso de herança, interfaces e polimorfismo.
+
+L - Liskov Substitution Principle (Princípio da Substituição de Liskov):
+Este princípio diz que os objetos de um tipo derivado devem poder ser
+substituídos por objetos de seu tipo base sem que o programa detecte isso.
+Em outras palavras, se S é um subtipo de T, então os objetos do
+tipo T podem ser substituídos por objetos do tipo S sem alterar as
+propriedades desejadas do programa.
+
+I - Interface Segregation Principle (Princípio da Segregação de Interfaces):
+Esse princípio declara que uma classe não deve ser forçada a depender de
+métodos que não usa. Em vez disso, as interfaces devem ser segregadas em
+interfaces menores e mais específicas, de modo que as classes só precisem
+implementar os métodos que realmente usam.
+
+D - Dependency Inversion Principle (Princípio da Inversão de Dependência):
+Este princípio sugere que os módulos de alto nível não devem depender
+de módulos de baixo nível. Em vez disso, ambos devem depender de abstrações.
+Além disso, as abstrações não devem depender de detalhes, mas sim os
+detalhes devem depender das abstrações. Isso promove um sistema mais
+flexível e fácil de manter.
