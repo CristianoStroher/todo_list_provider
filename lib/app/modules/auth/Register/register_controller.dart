@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/exception/auth_exception.dart';
 import 'package:todo_list_provider/app/services/user/user_service.dart';
 
+//!colocamos a regra de negocio no controller
 class RegisterController extends ChangeNotifier {
   //atributo
   final UserService _userService;
@@ -25,7 +26,7 @@ class RegisterController extends ChangeNotifier {
         
         } else {
         error = 'Erro ao registrar o usuário';//caso ocorra um erro ele armazena a mensagem de erro
-        
+
       }
     } on AuthException catch (e) {
       error = e.message;//caso ocorra um erro ele armazena a mensagem de erro do AuthException
