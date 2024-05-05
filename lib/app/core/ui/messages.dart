@@ -9,7 +9,7 @@ class Messages {
   // público (factory constructor) é usado para criar instâncias da
   // classe de fora dela, seguindo a lógica definida no construtor privado.
 
-  //VARIÁVEL FINAL
+  //VARIÁVEL FINAL BUILD CONTEXT QUE INSERE O CONTEXTO DE CONSTRUÇÃO
   final BuildContext context;
   //BuildContext context: Esta é uma variável final na classe Messages,
   // que armazena o contexto de construção. O BuildContext é frequentemente
@@ -19,7 +19,7 @@ class Messages {
   //construtor privado
   Messages._(this.context);
 
-  //Construtor factory para retornar a instancia da classe
+  //Construtor factory para retornar a instancia da classe usando .of.
   factory Messages.of(BuildContext context) => Messages._(context);
 
   void showError(String message) => _showMessage(message, Colors.red);
