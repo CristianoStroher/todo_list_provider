@@ -16,7 +16,7 @@ class DefaultListenerNotifier {
 
 //metodo para adicionar um listener e mostrar o loader
 void listener({
-  required BuildContext context,//
+  required BuildContext context,// recebe o contexto
 }) {  
     changeNotifier.addListener(() {//adiciona um listener
       if(changeNotifier.loading){//se o loading for verdadeiro
