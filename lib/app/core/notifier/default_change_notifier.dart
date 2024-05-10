@@ -1,5 +1,6 @@
+import 'package:flutter/material.dart';
 
-class DefaultChangeNotifier {
+class DefaultChangeNotifier extends ChangeNotifier{
   bool _loading = false; //atributo para armazenar se esta carregando
   String? _error; // atributo opcional para armazenar o erro 
   bool _success = false; //atributo para armazenar se a operação foi bem sucedida
@@ -12,6 +13,18 @@ class DefaultChangeNotifier {
 
   void showLoading() => _loading = true; //metodo para mostrar o loading
   void hideLoading() => _loading = false; //metodo para esconder o loading
-  void setError(String message) => _error = error; //metodo para setar o erro
   void success() => _success = true; //metodo para mostrar que a operação foi bem sucedida
+  void setError(String? message) => _error = error; //metodo para setar o erro
+  void showLoadingAndResetState() {
+    showLoading(); //mostra o loading
+    resetState();// reseta o estado colocando o erro como nulo e o sucesso como falso
+  }
+
+  //metodo para resetar o estado
+  void resetState() {
+    setError(null); //reseta o erro
+    _success = false; //reseta o sucesso
+  }
+
+
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_list_provider/app/core/notifier/default_listener_notifier.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
@@ -34,21 +35,23 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
    super.initState();
-   context.read<RegisterController>().addListener(() {//adiciona um listener
-     final controller = context.read<RegisterController>();//variavel para armazenar o controller
-     var sucess = controller.sucess;//variavel para armazenar se o registro foi bem sucedido  
-     var error = controller.error;//variavel para armazenar o erro
-     if(sucess){
-     Navigator.of(context).pop();//fecha a tela de cadastro
-     }else if (error != null && error.isNotEmpty) {
-       ScaffoldMessenger.of(context).showSnackBar(//mostra uma mensagem na tela
-         SnackBar(
-           content: Text(error),//mensagem de erro
-           backgroundColor: Colors.red,//cor de fundo da mensagem
-         ),
-       );
-     }
-   });
+   final defaultListener = DefaultListenerNotifier(changeNotifier: context.read<RegisterController>());//variavel para armazenar o listener
+   defaultListener.listener(context: context);//chamou o listener para
+  //  context.read<RegisterController>().addListener(() {//adiciona um listener
+  //    final controller = context.read<RegisterController>();//variavel para armazenar o controller
+  //    var sucess = controller.sucess;//variavel para armazenar se o registro foi bem sucedido  
+  //    var error = controller.error;//variavel para armazenar o erro
+  //    if(sucess){
+  //    Navigator.of(context).pop();//fecha a tela de cadastro
+  //    }else if (error != null && error.isNotEmpty) {
+  //      ScaffoldMessenger.of(context).showSnackBar(//mostra uma mensagem na tela
+  //        SnackBar(
+  //          content: Text(error),//mensagem de erro
+  //          backgroundColor: Colors.red,//cor de fundo da mensagem
+  //        ),
+  //      );
+  //    }
+  //  });
    
   }
 

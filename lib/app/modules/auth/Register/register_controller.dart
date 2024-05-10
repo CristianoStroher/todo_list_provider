@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:todo_list_provider/app/core/notifier/default_change_notifier.dart';
 import 'package:todo_list_provider/app/exception/auth_exception.dart';
 import 'package:todo_list_provider/app/services/user/user_service.dart';
 
 //!colocamos a regra de negocio no controller
-class RegisterController extends ChangeNotifier {
-  //atributo
+class RegisterController extends DefaultChangeNotifier {
+
+  //atributo privado para armazenar o UserService
   final UserService _userService;
-  String? error; //atributo opcional para armazenar o erro caso ocorra
-  bool sucess = false; //atributo para armazenar se o registro foi bem sucedido
+
 
   //construtor associando o atributo visto que ele é privado
   RegisterController({required UserService userService})
@@ -17,20 +17,20 @@ class RegisterController extends ChangeNotifier {
   // que chamara o metodo register do UserService passando o email e senha.
   Future<void> registerUser(String email, String password) async {
     try {
-      error = null; //limpa o erro quando chamar o metodo
-      sucess = false; //limpa o sucesso quando chamar o metodo
+      showLoadingAndResetState(); //limpa o sucesso quando chamar o metodo e mostra o loading
       notifyListeners();//notifica os listeners que houve uma mudança
       final user = await _userService.register(email, password);
       if(user != null) {
-        sucess = true;//caso o usuario seja diferente de nulo ele armazena que o registro foi bem sucedido  
+        success();//caso o usuario seja diferente de nulo ele armazena que o registro foi bem sucedido  
         
         } else {
-        error = 'Erro ao registrar o usuário';//caso ocorra um erro ele armazena a mensagem de erro
+        setError('Erro ao registrar o usuário');//caso ocorra um erro ele armazena a mensagem de erro
 
       }
     } on AuthException catch (e) {
-      error = e.message;//caso ocorra um erro ele armazena a mensagem de erro do AuthException
+      setError(e.message);//caso ocorra um erro ele armazena a mensagem de erro do AuthException
     } finally {
+      hideLoading();
       notifyListeners();//notifica os listeners que houve uma mudança 
     }
 
