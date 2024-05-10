@@ -36,22 +36,11 @@ class _RegisterPageState extends State<RegisterPage> {
   void initState() {
    super.initState();
    final defaultListener = DefaultListenerNotifier(changeNotifier: context.read<RegisterController>());//variavel para armazenar o listener
-   defaultListener.listener(context: context);//chamou o listener para
-  //  context.read<RegisterController>().addListener(() {//adiciona um listener
-  //    final controller = context.read<RegisterController>();//variavel para armazenar o controller
-  //    var sucess = controller.sucess;//variavel para armazenar se o registro foi bem sucedido  
-  //    var error = controller.error;//variavel para armazenar o erro
-  //    if(sucess){
-  //    Navigator.of(context).pop();//fecha a tela de cadastro
-  //    }else if (error != null && error.isNotEmpty) {
-  //      ScaffoldMessenger.of(context).showSnackBar(//mostra uma mensagem na tela
-  //        SnackBar(
-  //          content: Text(error),//mensagem de erro
-  //          backgroundColor: Colors.red,//cor de fundo da mensagem
-  //        ),
-  //      );
-  //    }
-  //  });
+   defaultListener.listener(context: context,//chamou o listener
+   sucessCallback: (notifier, listenerInstance){//chamou o callback de sucesso
+      listenerInstance.dispose();//chamou o dispose
+      Navigator.of(context).pop();//fecha a tela de cadastro e volta ao login
+    });
    
   }
 
