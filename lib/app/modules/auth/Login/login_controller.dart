@@ -42,4 +42,3 @@ class LoginController extends DefaultChangeNotifier {//aleteração da classe pa
 }
   
   
-}
