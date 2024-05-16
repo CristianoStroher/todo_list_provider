@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:todo_list_provider/app/exception/auth_exception.dart';
 import './user_repository.dart';
 
@@ -13,7 +14,7 @@ class UserRepositoryImpl implements UserRepository {
     required FirebaseAuth firebaseAuth,
   }) : _firebaseAuth = firebaseAuth; //como o atributo é privado, ele  é inicializado no construtor de forma diferente.
   
-  //pede para implementar o método
+  //pede para implementar o método de registrar da interface UserRepository
   @override
   Future<User?> register(String email, String password) async {
     //criamos uma variável para receber o usuário que foi criado.
@@ -54,6 +55,30 @@ class UserRepositoryImpl implements UserRepository {
       throw AuthException(
         message: e.message ?? 'Erro ao registrar usuário');
      }
+    }
+  }
+
+  //implementa o método de login da interface UserRepository
+  @override
+  Future<User?> login(String email, String password) async {
+    try {
+      final userCredential = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      return userCredential.user;
+    } on PlatformException catch (e, s) { //tratamento de erro de plataforma
+      print(e);
+      print(s);
+      throw AuthException(
+        message: e.message ?? 'Erro ao realizar login');
+    } on FirebaseAuthException catch (e, s) { //tratamento de erro do firebase
+      print(e);
+      print(s);
+      if(e.code == 'user-not-found' || e.code == 'wrong-password'){
+        throw AuthException(
+          message: 'E-mail ou senha inválidos');
+      } else {
+        throw AuthException(
+          message: e.message ?? 'Erro ao realizar login');
+      }
     }
   }
 }

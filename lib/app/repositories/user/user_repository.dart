@@ -5,4 +5,7 @@ abstract interface class UserRepository {
     // metodo para registrar um usuário
   Future<User?> register(String email, String password);
 
+  //metodo para logar um usuário
+  Future<User?> login(String email, String password);
+
 }

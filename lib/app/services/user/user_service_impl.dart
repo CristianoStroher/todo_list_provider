@@ -3,16 +3,23 @@ import 'package:todo_list_provider/app/repositories/user/user_repository.dart';
 
 import './user_service.dart';
 
+//classe de implementação de UserService que serve para registrar e logar um usuário  
 class UserServiceImpl implements UserService {
   //atributo
   final UserRepository _userRepository;
 
-  //Constructor
-  UserServiceImpl({required UserRepository userRepository}) : _userRepository = userRepository;
+  //Constructor que serve para inicializar o atributo _userRepository deixando a classe UserServiceImpl dependente de UserRepository
+  // protegendo o código de mudanças futuras
+  UserServiceImpl({required UserRepository userRepository})
+      : _userRepository = userRepository;
 
-  //metodo
+  //implementa o método de registrar de UserService
   @override
   Future<User?> register(String email, String password) =>
-       _userRepository.register(email, password);
+      _userRepository.register(email, password);
 
+  //implementa o método de login de UserService
+  @override
+  Future<User?> login(String email, String password) =>
+      _userRepository.login(email, password);
 }
