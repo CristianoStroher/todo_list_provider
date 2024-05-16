@@ -1,9 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sign_in_button/sign_in_button.dart';
+import 'package:todo_list_provider/app/core/notifier/default_listener_notifier.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
+import 'package:todo_list_provider/app/modules/auth/Login/login_controller.dart';
+import 'package:validatorless/validatorless.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -15,11 +19,17 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  final _formKey = GlobalKey<FormState>();//chave para o formulario
+  final _emailEC = TextEditingController();//controlador para o campo de email
+  final _passwordEC = TextEditingController(); //controlador para o campo de senha
+
   @override
   void initState() {
-           
-    super.initState();
-      FirebaseFirestore.instance.collection("USERS").add({"email": "cristiano@gmail.com", "senha" : "12345"});
+    super.initState(); //
+    DefaultListenerNotifier(changeNotifier: context.read<LoginController>()).listener(context: context, sucessCallback: (notifier, listenerInstance) {},
+    );//chamou o listener que foi criado no DefaultListenerNotifier e passou o contexto e o callback de sucesso0     
+    //FirebaseFirestore.instance.collection("USERS").add({"email": "cristiano@gmail.com", "senha" : "12345"});//! adicionando um usuário no banco de dados
   }
    @override
    Widget build(BuildContext context) {
@@ -40,11 +50,26 @@ class _LoginPageState extends State<LoginPage> {
                         const TodoListLogo(),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20,), //!symetric para dar espaçamento horizontal e vertical
-                          child: Form(child: Column(
+                          child: Form(
+                            key: _formKey, //!chave para o formulário
+                            child: Column(
                             children: [
-                              TodoListField(label: 'E-mail',),
+                              TodoListField(label: 'E-mail',
+                              controller: _emailEC,
+                              validator: Validatorless.multiple([
+                                Validatorless.required('E-mail obrigatório'),
+                                Validatorless.email('E-mail inválido'),
+                              ])
+                              ),
                               const SizedBox(height: 20,),
-                              TodoListField(label: 'Senha', obscureText: true,),
+                              TodoListField(
+                                label: 'Senha',
+                                controller: _passwordEC,
+                                validator: Validatorless.multiple([
+                                  Validatorless.required('Senha obrigatória'),
+                                  Validatorless.min(6, 'Senha muito curta'),
+                                ]),
+                                obscureText: true,),
                               const SizedBox(height: 10,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,7 +79,14 @@ class _LoginPageState extends State<LoginPage> {
                                     child: const Text('Esqueceu a senha?'),
                                   ),
                                   ElevatedButton(
-                                      onPressed: (){},
+                                      onPressed: (){
+                                        final formValid = _formKey.currentState?.validate() ?? false; //se
+                                        if(formValid){ //se o formulario for valido ele pega o email e a senha e chama o método de login
+                                          final email = _emailEC.text;
+                                          final password = _passwordEC.text;
+                                          context.read<LoginController>().login(email, password);
+                                        }
+                                      },
                                       style: ElevatedButton.styleFrom(
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(20),
