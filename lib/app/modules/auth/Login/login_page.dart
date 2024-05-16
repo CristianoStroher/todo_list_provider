@@ -27,7 +27,12 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState(); //
-    DefaultListenerNotifier(changeNotifier: context.read<LoginController>()).listener(context: context, sucessCallback: (notifier, listenerInstance) {},
+    DefaultListenerNotifier(changeNotifier: context.read<LoginController>())
+      .listener(
+        context: context,
+        sucessCallback: (notifier, listenerInstance) {
+          print('Logado com sucesso');//chamou o callback de sucesso dando um print
+        },
     );//chamou o listener que foi criado no DefaultListenerNotifier e passou o contexto e o callback de sucesso0     
     //FirebaseFirestore.instance.collection("USERS").add({"email": "cristiano@gmail.com", "senha" : "12345"});//! adicionando um usuário no banco de dados
   }
