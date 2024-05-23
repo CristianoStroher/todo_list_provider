@@ -22,4 +22,11 @@ class UserServiceImpl implements UserService {
   @override
   Future<User?> login(String email, String password) =>
       _userRepository.login(email, password);
+
+  //implementa o método de esquecer a senha de UserService  
+  @override
+  Future<void> forgotPassword(String email) =>
+      _userRepository.forgotPassword(email);
+      
+  
 }

@@ -32,6 +32,13 @@ class _LoginPageState extends State<LoginPage> {
     DefaultListenerNotifier(changeNotifier: context.read<LoginController>())
       .listener(
         context: context,
+        everCallback: (notifier, listenerInstance) {
+          if(notifier is LoginController){
+            if(notifier.hasInfo){
+              Messages.of(context).showInfo(notifier.infoMessage!);//mostra a mensagem de informação
+            }
+          } 
+        },
         sucessCallback: (notifier, listenerInstance) {
           print('Logado com sucesso');//chamou o callback de sucesso dando um printc
         },
@@ -86,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                                   TextButton(
                                     onPressed: (){ //! estrutura de
                                       if(_emailEC.text.isNotEmpty){ //se o email não estiver vazio ele chama o método de esqueci a senha
-                                        
+                                        context.read<LoginController>().forgotPassword(_emailEC.text); //chamando o método de esqueci a senha
 
                                       } else { //se o email estiver vazio ele mostra uma mensagem de erro
                                         _emailFocus.requestFocus(); //chama o metodo que foca no campo de email

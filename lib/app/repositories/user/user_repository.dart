@@ -8,4 +8,7 @@ abstract interface class UserRepository {
   //metodo para logar um usuário
   Future<User?> login(String email, String password);
 
+  //metodo para esquecer a senha
+  Future<void> forgotPassword(String email);
+
 }

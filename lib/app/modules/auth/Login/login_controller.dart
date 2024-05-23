@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/notifier/default_change_notifier.dart';
 import 'package:todo_list_provider/app/exception/auth_exception.dart';
-
 import '../../../services/user/user_service.dart';
 
 
@@ -9,17 +8,17 @@ import '../../../services/user/user_service.dart';
 class LoginController extends DefaultChangeNotifier {//aleteração da classe para herdar de DefaultChangeNotifier por conta do listener
 
   final UserService _userService; //atributo para UserService
+  String? infoMessage; //atributo para mensagem de informação
 
   LoginController({required UserService userService}) : _userService = userService; //construtor para inicializar o atributo _userService e encapsular a classe
 
-  final _formKey = GlobalKey<FormState>();
-  final _emailEC = TextEditingController();
-  final _passwordEC = TextEditingController();
+  bool get hasInfo => infoMessage != null; //método para verificar se tem mensagem de informação
   
   //metodo para realizar o Login  
   Future<void> login(String email, String password) async {
     try {
       showLoadingAndResetState();//mostra o loader e reseta o estado
+      infoMessage = null;//seta a mensagem de informação como nula
       notifyListeners();//notifica os listeners
       final user = await _userService.login(email, password); //chama o método de login do UserService 
     
@@ -37,6 +36,25 @@ class LoginController extends DefaultChangeNotifier {//aleteração da classe pa
       hideLoading();//esconde o loader
       notifyListeners();//notifica os listeners
     }
+
+  }
+
+  Future<void> forgotPassword(String email) async { //método para recuperar a senha
+    try {
+      showLoadingAndResetState();//mostra o loader e reseta o estado
+      infoMessage = null;//seta a mensagem de informação como nula
+      notifyListeners();//notifica os listeners
+      await _userService.forgotPassword(email);//chama o método de esquecer a senha do UserService
+      infoMessage = 'E-mail enviado para recuperação de senha';
+    } on AuthException catch (e) {//tratamento de exceção do tipo AuthException
+        setError(e.message);//seta o erro e mostra a mensagem
+    } catch (e) {//tratamento de exceção genérico
+        setError('Erro ao recuperar a senha');//seta o erro e mostra a mensagem
+    } finally {
+      hideLoading();//esconde o loader
+      notifyListeners();//notifica os listeners
+    }  
+
 
   }
 }
