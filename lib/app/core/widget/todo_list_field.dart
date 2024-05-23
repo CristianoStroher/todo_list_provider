@@ -10,6 +10,7 @@ class TodoListField extends StatelessWidget {
   final ValueNotifier<bool> obscureTexVN; //!para ser preenchido se terá obscureText ou não E GERENCIAR O ESTADO.
   final TextEditingController? controller; //!controlador do campo de texto e implementar a tela
   final FormFieldValidator<String>? validator; //!validador do campo de texto e implementar a tela
+  final FocusNode? focusNode; //!para ser preenchido se terá focusNode ou não
 
   //contrutor
  TodoListField({
@@ -19,6 +20,7 @@ class TodoListField extends StatelessWidget {
     this.obscureText = false, //!deixei como padrão false.
     this.controller,//! colocamos no construtor
     this.validator, //!colocamos no construtor
+    this.focusNode, //!colocamos no construtor o comando focusNode
     }) : assert(obscureText == true ? suffixIconButton == null : true,
         'obscureText não pode ser enviado em conjunto com suffixIconButton.'), //!validando se o obscureText é true, o suffixIconButton deve ser null pois ja tem o botao do olho como padrão.
       obscureTexVN = ValueNotifier(obscureText);
@@ -31,6 +33,7 @@ class TodoListField extends StatelessWidget {
                return TextFormField(
                 controller: controller, //!para o campo de texto
                 validator: validator, //!para o campo de texto
+                focusNode: focusNode, //!passar o focusNode para o campo de texto caso tenha
                 decoration: InputDecoration(
                   labelText: label,// texto do label
                   labelStyle: const TextStyle(// estilo do label

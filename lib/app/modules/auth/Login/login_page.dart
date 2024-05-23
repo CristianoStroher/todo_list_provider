@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 import 'package:todo_list_provider/app/core/notifier/default_listener_notifier.dart';
+import 'package:todo_list_provider/app/core/ui/messages.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
 import 'package:todo_list_provider/app/modules/auth/Login/login_controller.dart';
@@ -23,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();//chave para o formulario
   final _emailEC = TextEditingController();//controlador para o campo de email
   final _passwordEC = TextEditingController(); //controlador para o campo de senha
+  final _emailFocus = FocusNode(); //focus node para o campo de senha
 
   @override
   void initState() {
@@ -59,12 +61,14 @@ class _LoginPageState extends State<LoginPage> {
                             key: _formKey, //!chave para o formulário
                             child: Column(
                             children: [
-                              TodoListField(label: 'E-mail',
-                              controller: _emailEC,
-                              validator: Validatorless.multiple([
-                                Validatorless.required('E-mail obrigatório'),
-                                Validatorless.email('E-mail inválido'),
-                              ])
+                              TodoListField(
+                                label: 'E-mail',
+                                controller: _emailEC,
+                                focusNode: _emailFocus, // passando o focus node para o campo de email
+                                validator: Validatorless.multiple([
+                                  Validatorless.required('E-mail obrigatório'),
+                                  Validatorless.email('E-mail inválido'),
+                                ])
                               ),
                               const SizedBox(height: 20,),
                               TodoListField(
@@ -80,7 +84,15 @@ class _LoginPageState extends State<LoginPage> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   TextButton(
-                                    onPressed: (){},
+                                    onPressed: (){ //! estrutura de
+                                      if(_emailEC.text.isNotEmpty){ //se o email não estiver vazio ele chama o método de esqueci a senha
+                                        
+
+                                      } else { //se o email estiver vazio ele mostra uma mensagem de erro
+                                        _emailFocus.requestFocus(); //chama o metodo que foca no campo de email
+                                        Messages.of(context).showError('Digite o email para recuperar a senha'); 
+                                      }
+                                    },
                                     child: const Text('Esqueceu a senha?'),
                                   ),
                                   ElevatedButton(
