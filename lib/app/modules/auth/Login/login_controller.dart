@@ -14,6 +14,29 @@ class LoginController extends DefaultChangeNotifier {//aleteração da classe pa
 
   bool get hasInfo => infoMessage != null; //método para verificar se tem mensagem de informação
   
+  //método para realizar o login com o Google
+  Future<void> googleLogin() async {
+    try {
+      showLoadingAndResetState();//mostra o loader e reseta o estado. Função pronta no DefaultChangeNotifier
+      infoMessage = null;//seta a mensagem de informação como nula. Função pronta nesta classe
+      notifyListeners();//notifica os listeners e aprsenta o loader.
+      final user = await _userService.googleLogin();//chama o método de login com o Google do UserService para
+      
+      if(user != null) {//checagem se o usuário é diferente de nulo
+        success();//chama o método de sucesso
+      } else {
+        setError('Erro ao realizar login com o Google');//seta o erro
+      }
+    } on AuthException catch (e, s) {//tratamento de exceção do tipo AuthException
+     print(e);//printa a exceção
+     print(s);//printa a stacktrace
+     setError(e.message);//seta o erro e mostra a mensagem
+    }finally {
+      hideLoading();//esconde o loader
+      notifyListeners();//notifica os listeners
+
+  }
+
   //metodo para realizar o Login  
   Future<void> login(String email, String password) async {
     try {
@@ -57,6 +80,8 @@ class LoginController extends DefaultChangeNotifier {//aleteração da classe pa
 
 
   }
+}
+
 }
   
   
