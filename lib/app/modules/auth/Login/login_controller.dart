@@ -25,9 +25,11 @@ class LoginController extends DefaultChangeNotifier {//aleteração da classe pa
       if(user != null) {//checagem se o usuário é diferente de nulo
         success();//chama o método de sucesso
       } else {
+        _userService.googleLogout();//chama o método de logout do UserService
         setError('Erro ao realizar login com o Google');//seta o erro
       }
     } on AuthException catch (e, s) {//tratamento de exceção do tipo AuthException
+     _userService.googleLogout();//chama o método de logout do UserService
      print(e);//printa a exceção
      print(s);//printa a stacktrace
      setError(e.message);//seta o erro e mostra a mensagem

@@ -14,4 +14,7 @@ abstract interface class UserRepository {
   // metodo para logar com o google
   Future<User?> googleLogin();
 
+ //metodo para deslogar
+  Future<void> googleLogout();
+
 }
