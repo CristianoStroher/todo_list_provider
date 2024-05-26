@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:todo_list_provider/app/exception/auth_exception.dart';
 import './user_repository.dart';
 
@@ -103,5 +104,43 @@ class UserRepositoryImpl implements UserRepository {
         message: e.message ?? 'Erro ao recuperar senha');
   }
 }
+  // metodo para logar com o google
+  @override
+  Future<User?> googleLogin() async {
+    var List<String>? loginMethods; //cria uma lista de string para armazenar os métodos de login
+    try {
+  final googleSignIn = GoogleSignIn(); //cria uma instância do GoogleSignIn
+  final googleUser = await googleSignIn.signIn(); //chama o método de signIn do GoogleSignIn(ab)
+  
+  if(googleUser != null) { //se o googleUser for diferente de nulo quer dizer que o usuário logou com o google ou tentou logar
+    loginMethods = await _firebaseAuth.fetchSignInMethodsForEmail(googleUser.email); //so que antes de logar ele verifica se o email já está cadastrado para evitar subscrever o email
+    // entao se ele constata que tem o cadastro usando o email se senha do cadastro ele não deixa logar com o google.
+    if(loginMethods.contains('password')) {
+      throw AuthException(
+        message: 'E-mail já cadastrado, utilize o login com e-mail e senha');
+    } else {
+      final googleAuth = await googleUser.authentication; //se não ele pega as credenciais do googleUser
+      final firebaseCredential = GoogleAuthProvider.credential( //cria uma credencial com o GoogleAuthProvider
+        accessToken: googleAuth.accessToken, //passa o accessToken do google de autorização
+        idToken: googleAuth.idToken, // passa o idToken do google de identificação
+      );
+      final userCredential = await _firebaseAuth.signInWithCredential(firebaseCredential); //faz o login com a credencial
+      return userCredential.user; //retorna o usuário
+    }
+  }
+} on FirebaseAuthException catch (e, s) {
+  print(e);
+  print(s);
+  if(e.code == 'account-exists-with-different-credential') {  //essa mensagem é padrão do firebase de que a conta já existe com um provedor diferente
+    throw AuthException(
+      message: '''E-mail já cadastrado, utilize o login com os seguintes provedores: ${loginMethods?.join(', ')}'''); //se o email já estiver cadastrado ele mostra a mensagem com os provedores que já estão cadastrados como facebook, google, etc.
+  } else {
+    throw AuthException(
+      message: e.message ?? 'Erro ao realizar login com Google');
+  }
+
+}
+  
+  }
 }
 

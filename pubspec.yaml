@@ -41,6 +41,7 @@ dependencies:
       url: https://github.com/itamarjp/Flutter-Google-Sign-in-Button.git
       ref: patch-1
   fluttericon: ^2.0.0
+  google_sign_in: ^6.2.1
 
   # font_awesome_flutter:
 
