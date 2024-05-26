@@ -34,9 +34,8 @@ class LoginController extends DefaultChangeNotifier {//aleteração da classe pa
     }finally {
       hideLoading();//esconde o loader
       notifyListeners();//notifica os listeners
-
   }
-
+  }
   //metodo para realizar o Login  
   Future<void> login(String email, String password) async {
     try {
@@ -82,6 +81,5 @@ class LoginController extends DefaultChangeNotifier {//aleteração da classe pa
   }
 }
 
-}
   
   
