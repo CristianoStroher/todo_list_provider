@@ -107,7 +107,7 @@ class UserRepositoryImpl implements UserRepository {
   // metodo para logar com o google
   @override
   Future<User?> googleLogin() async {
-    var List<String>? loginMethods; //cria uma lista de string para armazenar os métodos de login
+    List<String>? loginMethods; //cria uma lista de string para armazenar os métodos de login
     try {
   final googleSignIn = GoogleSignIn(); //cria uma instância do GoogleSignIn
   final googleUser = await googleSignIn.signIn(); //chama o método de signIn do GoogleSignIn(ab)
