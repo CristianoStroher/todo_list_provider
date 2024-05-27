@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/database/sqlite_adm_connection.dart';
+import 'package:todo_list_provider/app/core/navigator/todol_list_navigator.dart';
 import 'package:todo_list_provider/app/core/ui/todo_list_ui_config.dart';
 import 'package:todo_list_provider/app/modules/auth/auth_module.dart';
+import 'package:todo_list_provider/app/modules/home/home_module.dart';
 import 'package:todo_list_provider/app/modules/splash/splash_page.dart';
 
 //! aqui vai ficar a implementação do nosso material app
@@ -39,10 +41,12 @@ final sqliteAdmConnection = SqliteAdmConnection();
    Widget build(BuildContext context) {
        return MaterialApp(
         title: 'Todo List Provider',
-        initialRoute: '/login',
+        // initialRoute: '/login', //rota inicial para o login
         theme: TodoListUiConfig.theme,//!vinculei o tema ao app personalizado
+        navigatorKey: TodolListNavigator.navigatorKey, //!vinculei a chave do navigator ao app
         routes: {
-          ...AuthModule().routers
+          ...AuthModule().routers,//adiciona as rotas do AuthModule
+          ...HomeModule().routers, //!adiciona as rotas do HomeModule
         },
         home: const SplashPage(),
         
