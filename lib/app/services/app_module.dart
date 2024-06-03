@@ -1,12 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider; 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_list_provider/app/core/auth/auth_provider.dart';
 import 'package:todo_list_provider/app/core/database/sqlite_connection_factory.dart';
 import 'package:todo_list_provider/app/repositories/user/user_repository.dart';
 import 'package:todo_list_provider/app/repositories/user/user_repository_impl.dart';
 import 'package:todo_list_provider/app/services/app_widget.dart';
 import 'package:todo_list_provider/app/services/user/user_service.dart';
 import 'package:todo_list_provider/app/services/user/user_service_impl.dart';
+
 
 //! fica aqui as configurações genéricas da aplicação e tudo que for compartilhado pela
 //! aplicação toda. classes que vão ser compartilhadas por vários módulos
