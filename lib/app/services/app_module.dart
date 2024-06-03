@@ -31,11 +31,12 @@ class AppModule extends StatelessWidget {
             create: (context) => UserServiceImpl(
               userRepository: context.read()),
           ),
-
           ChangeNotifierProvider(
             create: (context) => AuthProvider(
-              firebaseAuth: context.read(), userService: context.read())
-              ..loadListener(),
+              firebaseAuth: context.read(),
+              userService: context.read(),
+              )..loadListener(),
+              lazy: false, //não cria a instância até que seja chamado
           ),  
         ],
         child: const AppWidget(),
