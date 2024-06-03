@@ -28,7 +28,7 @@ class TodolListNavigator {
   // cria um getter para acessar o NavigatorState de qualquer lugar
   // da aplicação. esse getter é um método estático que retorna o
   // estado do Navigator.
-  static NavigatorState? get to => navigatorKey.currentState; 
+  static NavigatorState get to => navigatorKey.currentState!; //retorna o estado do Navigator forçando a não ser nulo (!)
 
   
 }
