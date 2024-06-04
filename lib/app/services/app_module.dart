@@ -38,7 +38,7 @@ class AppModule extends StatelessWidget {
               firebaseAuth: context.read(),
               userService: context.read(),
               )..loadListener(),
-              lazy: false, //não cria a instância até que seja chamado
+              lazy: false, //logo que inicializado ja chama a função
           ),  
         ],
         child: const AppWidget(),
