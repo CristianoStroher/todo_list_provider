@@ -71,14 +71,15 @@ class HomeDrawer extends StatelessWidget {
                               style: TextStyle(color: Colors.red),), //texto do botão
                           ),
                           TextButton( //botão de salvar
-                            onPressed: () { //ação ao clicar no botão
+                            onPressed: () async { //ação ao clicar no botão
                               final nameValue = nameVN.value; //pega o valor do value notifier
-                             if(nameValue.isNotEmpty) {
-                               Messages.of(context).showError('Nome Obrigatório'); //se o campo de texto estiver vazio ele mostra uma mensagem de erro
-                             } else {
-                               context.read<UserService>().updateDisplayName(nameValue); //se não ele chama a função de alterar o nome do auth_provider.dart
-                               Navigator.of(context).pop(); //fecha o dialog
-                             }
+                              if(nameValue.isNotEmpty) {
+                               Messages.of(context)
+                                    .showError('Nome Obrigatório'); //se o campo de texto estiver vazio ele mostra uma mensagem de erro
+                              } else {
+                                await context.read<UserService>().updateDisplayName(nameValue); //se não ele chama a função de alterar o nome do auth_provider.dart
+                                  Navigator.of(context).pop();//fecha dialog
+                              }
                             },
                             child: const Text('Alterar'), //texto do botão
                           )
