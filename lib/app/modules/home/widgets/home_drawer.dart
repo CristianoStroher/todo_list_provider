@@ -76,9 +76,7 @@ class HomeDrawer extends StatelessWidget {
                              if(nameValue.isNotEmpty) {
                                Messages.of(context).showError('Nome Obrigatório'); //se o campo de texto estiver vazio ele mostra uma mensagem de erro
                              } else {
-                              Loader.show(context); //mostra um loader enquanto altera o nome
                                context.read<UserService>().updateDisplayName(nameValue); //se não ele chama a função de alterar o nome do auth_provider.dart
-                               Loader.hide(); //esconde o loader
                                Navigator.of(context).pop(); //fecha o dialog
                              }
                             },
