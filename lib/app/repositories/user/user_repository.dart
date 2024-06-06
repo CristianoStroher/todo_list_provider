@@ -17,4 +17,7 @@ abstract interface class UserRepository {
  //metodo para deslogar
   Future<void> logout();
 
+  //metodo para alterar o nome do usuário
+  Future<void> updateDisplayName(String name);
+
 }

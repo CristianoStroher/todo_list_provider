@@ -7,4 +7,5 @@ abstract class UserService {
   Future<void> forgotPassword(String email); //metodo para esquecer a senha
   Future<User?> googleLogin(); //metodo para logar com o google
   Future<void> logout(); //metodo para deslogar
+  Future<void> updateDisplayName(String name); //metodo para alterar o nome do usuário
 }

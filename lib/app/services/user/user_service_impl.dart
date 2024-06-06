@@ -35,6 +35,11 @@ class UserServiceImpl implements UserService {
   //implementa o método de deslogar de UserService
   @override
   Future<void> logout() => _userRepository.logout();
+
+  //implementa o método de alterar o nome do usuário de UserService
+  @override
+  Future<void> updateDisplayName(String name) =>
+      _userRepository.updateDisplayName(name);
       
   
 }

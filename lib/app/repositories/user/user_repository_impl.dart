@@ -149,5 +149,20 @@ class UserRepositoryImpl implements UserRepository {
     await GoogleSignIn().signOut(); //chama o método de signOut do GoogleSignIn
     _firebaseAuth.signOut(); //chama o método de signOut do FirebaseAuth
   }
+  
+  //metodo para alterar o nome do usuário
+  @override
+  Future<void> updateDisplayName(String name) async {
+    // para alterar o nome do usuário, vamos pegar o usuário atual e atualizar o displayName
+    final user = _firebaseAuth.currentUser; //pega o usuário atual
+    if(user != null) { //se o usuário for diferente de nulo
+      await user.updateDisplayName(name); //atualiza o displayName do usuário
+      user.reload();//atualiza o usuário
+    } else {
+      throw AuthException(
+        message: 'Usuário não autenticado');
+    }
+    
+  }
 }
 

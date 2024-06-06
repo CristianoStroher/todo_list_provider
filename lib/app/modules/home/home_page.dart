@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
    Widget build(BuildContext context) {
        return Scaffold(
            appBar: AppBar(title: const Text('Home Page'),),
-           drawer: const HomeDrawer(), //adiciona o drawer que é um widget que criamos separado
+           drawer: HomeDrawer(), //adiciona o drawer que é um widget que criamos separado
            body: Container(),
             );
   }
