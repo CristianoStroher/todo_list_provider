@@ -73,8 +73,8 @@ class HomeDrawer extends StatelessWidget {
                           TextButton( //botão de salvar
                             onPressed: () async { //ação ao clicar no botão
                               final nameValue = nameVN.value; //pega o valor do value notifier
-                              if(nameValue.isNotEmpty) {
-                               Messages.of(context)
+                              if(nameValue.isEmpty) {
+                                Messages.of(context)
                                     .showError('Nome Obrigatório'); //se o campo de texto estiver vazio ele mostra uma mensagem de erro
                               } else {
                                 await context.read<UserService>().updateDisplayName(nameValue); //se não ele chama a função de alterar o nome do auth_provider.dart
