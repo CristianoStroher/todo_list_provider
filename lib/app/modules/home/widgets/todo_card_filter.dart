@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 
@@ -40,16 +41,18 @@ class TodoCardFilter extends StatelessWidget {
           const Text( // cria um texto
             'HOJE',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 15,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
-          LinearProgressIndicator( //cria um indicador de progresso linear
-            value: 0.4,
-            backgroundColor: context.primaryColorLight,
-            valueColor: const AlwaysStoppedAnimation<Color>( //muda a cor do indicador de progresso
-              Colors.white,),), 
+          // const Expanded( //cria um widget que se expande            
+          //   child:  LinearProgressIndicator( //cria um indicador de progresso linear
+          //     value: 0.4,
+          //     backgroundColor: Colors.white,
+          //     valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+          // ) )
+           
         ],
       ),
     );
