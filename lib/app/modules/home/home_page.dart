@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todo_list_provider/app/core/auth/auth_provider.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/core/ui/todo_list_icons.dart';
+import 'package:todo_list_provider/app/modules/home/widgets/filters_home.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/header_home.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_drawer.dart';
 
@@ -18,7 +17,7 @@ class HomePage extends StatelessWidget {
             backgroundColor: Colors.transparent, //cor do appbar transparente
             elevation: 0, //elevação do appbar retirdo que davá uma sombra
             actions: [
-              PopupMenuButton( //cria um menu popup no appbar
+              PopupMenuButton( //cria um menu popup no appbar para filtrar as tarefas
                 icon: const Icon(TodoListIcons.filter), //pegamos o icone do filter atraves do arquivo todo_list_icons.dart
                 itemBuilder: (_) => [ // cria os itens do menu
                   const PopupMenuItem<bool>(child: Text('Mostrar tarefas concluídas'), //cria um item do menu
@@ -44,6 +43,7 @@ class HomePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start, //alinhamento do widget para a esquerda
                         children: [
                           HeaderHome(), //adiciona o header_home que é um widget que criamos separado
+                          FiltersHome(),//adiciona o filters_home que é um widget que criamos separado
                         ],
                       ),) 
                   ) ,

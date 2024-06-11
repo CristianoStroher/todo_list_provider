@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list_provider/app/core/auth/auth_provider.dart';
 import 'package:todo_list_provider/app/core/ui/messages.dart';
@@ -46,7 +45,7 @@ class HomeDrawer extends StatelessWidget {
                           builder: (_, value, __) { //cria o texto do nome do usuario
                             return Text(
                               value, //valor do nome do usuario que ele pega no cadastro do google
-                              style: context.titleLarge, //estilo do texto que busca no arquivo theme_extensions.dart
+                              style: context.titleStyle, //estilo do texto que busca no arquivo theme_extensions.dart
                             );
                         }),
                     ),
