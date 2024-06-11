@@ -13,18 +13,40 @@ class TodoCardFilter extends StatelessWidget {
           minWidth: 150,
         ),
         margin: const EdgeInsets.only(right: 10), //adiciona uma margem no container
+        padding: const EdgeInsets.all(20), //adiciona um padding no container
         decoration: BoxDecoration(
           color: context.primaryColor, //muda a cor do container para a cor primária do tema
-          borderRadius: BorderRadius.circular(10), //borda arredondada
-          boxShadow: [ //adiciona uma sombra no container
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5), //cor da sombra
-              spreadRadius: 1, //raio de espalhamento da sombra 
-              blurRadius: 7, //raio de desfoque da sombra
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ],
+          border: Border.all(
+            width: 1, //muda a largura da borda do container para 1
+            color: Colors.grey.withOpacity(.8), //muda a cor da borda do container para cinza esfumaçado
+          ), //adiciona uma borda no container
+          borderRadius: BorderRadius.circular(20), //adiciona um raio de borda no container
         ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start, //alinhamento do widget para a esquerda
+          children: [
+                 Text(
+                '10 TASKS',
+                style: context.titleStyle.copyWith(
+                  fontSize: 10,              
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                'HOJE',
+                style: context.titleStyle.copyWith(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                ),
+              ),
+              const LinearProgressIndicator( // cria um indicador de progresso linear
+                value: 0.5,
+                backgroundColor: Colors.white,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+           ],
+          ),
        );
    }
 }
