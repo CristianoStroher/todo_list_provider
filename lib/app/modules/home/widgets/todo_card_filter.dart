@@ -49,9 +49,7 @@ class TodoCardFilter extends StatelessWidget {
             value: 0.4,
             backgroundColor: context.primaryColorLight,
             valueColor: const AlwaysStoppedAnimation<Color>( //muda a cor do indicador de progresso
-              Colors.white,
-            )
-          ), //cria um indicador de progresso linear
+              Colors.white,),), 
         ],
       ),
     );
