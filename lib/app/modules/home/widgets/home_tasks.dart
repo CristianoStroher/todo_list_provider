@@ -23,6 +23,9 @@ class HomeTasks extends StatelessWidget {
                 Task(),
                 Task(),
                 Task(),
+                Task(),
+                Task(),
+                Task(),
           ],
         )
       ],

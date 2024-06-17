@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
        return Scaffold(
            appBar: AppBar(
             iconTheme: IconThemeData(color: context.primaryColor), //insere um icone no appbar e muda a cor dele
-            backgroundColor: Colors.transparent, //cor do appbar transparente
+            backgroundColor: const Color(0xFFFAFBFE), //cor do appbar branco 
             elevation: 0, //elevação do appbar retirdo que davá uma sombra
             actions: [
               PopupMenuButton( //cria um menu popup no appbar para filtrar as tarefas
@@ -27,6 +27,11 @@ class HomePage extends StatelessWidget {
                 ],
               ), //cria um menu popup no appbar (itemBuilder é um metodo que criamos para criar os itens do menu
             ],
+           ),
+           floatingActionButton: FloatingActionButton( //cria um botão flutuante
+              backgroundColor: context.primaryColor, //cor do botão flutuante
+              onPressed: () {}, //cria uma função para o botão flutuante
+              child: const Icon(Icons.add), 
            ),
            backgroundColor: const Color(0xFFFAFBFE), //cor de fundo do scaffold
            drawer: HomeDrawer(), //adiciona o drawer que é um widget que criamos separado
