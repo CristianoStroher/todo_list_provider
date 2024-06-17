@@ -4,6 +4,8 @@ import 'package:todo_list_provider/app/core/ui/todo_list_icons.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/filters_home.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/header_home.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_drawer.dart';
+import 'package:todo_list_provider/app/modules/home/widgets/home_tasks.dart';
+import 'package:todo_list_provider/app/modules/home/widgets/home_week_filter.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -44,6 +46,8 @@ class HomePage extends StatelessWidget {
                         children: [
                           HeaderHome(), //adiciona o header_home que é um widget que criamos separado
                           FiltersHome(),//adiciona o filters_home que é um widget que criamos separado
+                          HomeWeekFilter(),//adiciona o home_week_filter que é um widget que criamos separado 
+                          HomeTasks(),//adiciona o home_tasks que é um widget que criamos separado
                         ],
                       ),) 
                   ) ,
