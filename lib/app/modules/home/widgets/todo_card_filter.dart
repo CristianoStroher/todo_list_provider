@@ -41,18 +41,21 @@ class TodoCardFilter extends StatelessWidget {
           const Text( // cria um texto
             'HOJE',
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
-          // const Expanded( //cria um widget que se expande            
-          //   child:  LinearProgressIndicator( //cria um indicador de progresso linear
-          //     value: 0.4,
-          //     backgroundColor: Colors.white,
-          //     valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-          // ) )
-           
+          const SizedBox(height: 5),
+          const SizedBox(
+            width: 100, 
+            height: 5,
+            child: LinearProgressIndicator( //cria um indicador de progresso linear
+              value: .4, //define o valor do indicador de progresso
+              backgroundColor: Colors.yellow, //define a cor de fundo do indicador de progresso
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white), //define a cor do indicador de progresso
+              ),
+          ),
         ],
       ),
     );
