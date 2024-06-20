@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/core/ui/todo_list_icons.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/filters_home.dart';
@@ -6,10 +7,33 @@ import 'package:todo_list_provider/app/modules/home/widgets/header_home.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_drawer.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_tasks.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_week_filter.dart';
+import 'package:todo_list_provider/app/modules/tasks/tasks_create_page.dart';
+import 'package:todo_list_provider/app/modules/tasks/tasks_module.dart';
 
 class HomePage extends StatelessWidget {
 
   const HomePage({ super.key });
+
+  void _gotoCreateTask( BuildContext context) {
+    //  Navigator.of(context).pushNamed('/tasks/create'); //vai para a pagina de criar tarefa
+    Navigator.of(context).push(
+      PageRouteBuilder( //cria uma rota para ir para a pagina de criar task
+        transitionDuration:const Duration(milliseconds: 400), //duração da transição da pagina
+        transitionsBuilder: (context, animation, secundaryAnimation, child) { //cria uma animação na transição da pagina
+          animation = CurvedAnimation(parent: animation, curve: Curves.easeInOut); //cria uma curva de animação
+          return ScaleTransition(scale: animation, alignment: Alignment.bottomRight, //cria uma anim
+          child: child,);//adiciona uma animação na transição da pagina
+        },
+        pageBuilder: (context, animation, secundaryAnimation) {
+          return TasksModule().getPage('/tasks/create', context);
+        },
+      ),
+        ); //vai para a pagina de criar task
+      // MaterialPageRoute(
+      // builder: (_) => TasksModule().getPage('/task/create', context),));  //vai para a pagina de criar task 
+  }  //cria uma função para ir para a pagina Task
+
+
 
    @override
    Widget build(BuildContext context) {
@@ -30,7 +54,9 @@ class HomePage extends StatelessWidget {
            ),
            floatingActionButton: FloatingActionButton( //cria um botão flutuante
               backgroundColor: context.primaryColor, //cor do botão flutuante
-              onPressed: () {}, //cria uma função para o botão flutuante
+              onPressed: () {
+                _gotoCreateTask(context); //chama a função para ir para a pagina Task 
+              }, //cria uma função para o botão flutuante
               child: const Icon(Icons.add), 
            ),
            backgroundColor: const Color(0xFFFAFBFE), //cor de fundo do scaffold

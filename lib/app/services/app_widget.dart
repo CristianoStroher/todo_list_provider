@@ -5,6 +5,8 @@ import 'package:todo_list_provider/app/core/ui/todo_list_ui_config.dart';
 import 'package:todo_list_provider/app/modules/auth/auth_module.dart';
 import 'package:todo_list_provider/app/modules/home/home_module.dart';
 import 'package:todo_list_provider/app/modules/splash/splash_page.dart';
+import 'package:todo_list_provider/app/modules/tasks/tasks_create_page.dart';
+import 'package:todo_list_provider/app/modules/tasks/tasks_module.dart';
 
 //! aqui vai ficar a implementação do nosso material app
 //! mudamos agora para statefulwidget para suportar alteração da pagina
@@ -47,6 +49,7 @@ final sqliteAdmConnection = SqliteAdmConnection();
         routes: {
           ...AuthModule().routers,//adiciona as rotas do AuthModule
           ...HomeModule().routers, //!adiciona as rotas do HomeModule
+          ...TasksModule().routers, //!adiciona as rotas do TasksModule
         },
         home: const SplashPage(),
         

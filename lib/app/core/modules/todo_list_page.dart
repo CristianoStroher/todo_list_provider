@@ -7,22 +7,22 @@ import 'package:provider/single_child_widget.dart';
 //nessa classe vamos encapsular nossas estruturas especialmente as rotas.
 class TodoListPage extends StatelessWidget {
 
-  final List<SingleChildWidget>? _bindings;
-  final WidgetBuilder _page;
+  final List<SingleChildWidget>? _bindings; //lista de widgets
+  final WidgetBuilder _page; //uma função que retorna um widget
 
   const TodoListPage({
-    Key? key,
+    super.key,
     List<SingleChildWidget>? bindings,
     required WidgetBuilder page
     }) : _bindings = bindings,
-    _page = page,
-    super(key: key);
+    _page = page;
+    
 
     // colocamos o object(fake) pois o multiprovider exige pelo menos um provider
    @override
    Widget build(BuildContext context) {
-    return MultiProvider(providers: _bindings ?? [Provider(create: (_)=>Object())],
-    child: Builder(builder: (context) => _page(context),
+    return MultiProvider(providers: _bindings ?? [Provider(create: (_)=>Object())], //cria um multiprovider que recebe uma lista de provedores
+    child: Builder(builder: (context) => _page(context), //cria um builder para encapsular uma função de construção que não requer acesso direto ao contexto pai
     ) ,
     );
        

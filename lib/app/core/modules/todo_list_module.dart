@@ -23,5 +23,17 @@ abstract class TodoListModule {
         page: pageBuilder,)));
 
   } 
+
+  //metodo para pegar a pagina e o contexto que vai ser passado para a pagina
+  Widget getPage(String path, BuildContext context) {
+    final widgetBuilder = _routers[path];
+    if(widgetBuilder != null) {
+      return TodoListPage(
+        bindings: _bindings,
+        page: widgetBuilder);
+      
+    }
+    throw Exception('Rota não encontrada');
+  }
   
 }
