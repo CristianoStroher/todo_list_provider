@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/core/ui/todo_list_icons.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/filters_home.dart';
@@ -7,7 +7,7 @@ import 'package:todo_list_provider/app/modules/home/widgets/header_home.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_drawer.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_tasks.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_week_filter.dart';
-import 'package:todo_list_provider/app/modules/tasks/tasks_create_page.dart';
+
 import 'package:todo_list_provider/app/modules/tasks/tasks_module.dart';
 
 class HomePage extends StatelessWidget {
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 _gotoCreateTask(context); //chama a função para ir para a pagina Task 
               }, //cria uma função para o botão flutuante
-              child: const Icon(Icons.add), 
+              child: const Icon(Icons.add, color: Colors.white,), 
            ),
            backgroundColor: const Color(0xFFFAFBFE), //cor de fundo do scaffold
            drawer: HomeDrawer(), //adiciona o drawer que é um widget que criamos separado
