@@ -49,7 +49,8 @@ class HomePage extends StatelessWidget {
                   const PopupMenuItem<bool>(child: Text('Mostrar tarefas concluídas'), //cria um item do menu
                   ),
                 ],
-              ), //cria um menu popup no appbar (itemBuilder é um metodo que criamos para criar os itens do menu
+              ),
+               //cria um menu popup no appbar (itemBuilder é um metodo que criamos para criar os itens do menu
             ],
            ),
            floatingActionButton: FloatingActionButton( //cria um botão flutuante
@@ -86,6 +87,7 @@ class HomePage extends StatelessWidget {
               );
             },
            ),
+           
             );
   }
 }

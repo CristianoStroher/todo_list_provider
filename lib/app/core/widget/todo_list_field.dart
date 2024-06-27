@@ -31,8 +31,8 @@ class TodoListField extends StatelessWidget {
            valueListenable: obscureTexVN, //!escutar o estado do obscureTexVN
            builder: (_, obscureTextValue, child) {  //!sempre que o obscureTexVN mudar ele vai chamar o builder
                return TextFormField(
-                controller: controller, //!para o campo de texto
-                validator: validator, //!para o campo de texto
+                controller: controller, //!para o campo de texto //implementar o controller que é um TextEditingController
+                validator: validator, //!para o campo de texto //implementar o validator que é uma função que recebe uma string e retorna uma string
                 focusNode: focusNode, //!passar o focusNode para o campo de texto caso tenha
                 decoration: InputDecoration(
                   labelText: label,// texto do label

@@ -53,6 +53,9 @@ final sqliteAdmConnection = SqliteAdmConnection();
         },
         home: const SplashPage(),
         
+        
        );
+       
   }
+  
 }
