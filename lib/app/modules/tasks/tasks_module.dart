@@ -22,12 +22,16 @@ class TasksModule extends TodoListModule{
           ),
         ),
 
+        //instanciando o TasksServiceImpl para ser usado no controller
         Provider<TasksService>(
           create: (context) =>
            TasksServiceImpl( tasksRepository: context.read()),
         ),
 
-        ChangeNotifierProvider(create: (context) => TasksCreateController(taskService: context.read()),
+        //instanciando o TasksCreateController para ser usado no controller
+        ChangeNotifierProvider(
+          create: (context) =>
+           TasksCreateController(taskService: context.read()),
         ),
       ],
       routers: {
