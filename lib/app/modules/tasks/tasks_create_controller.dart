@@ -17,6 +17,7 @@ class TasksCreateController extends DefaultChangeNotifier {
 
   //metodo set alterar a data atual selecionada e notificar os listeners
   set selectedDate(DateTime? selectedDate) {
+    resetState(); //reseta o estado
     _selectedDate = selectedDate; //setar a data selecionada
     notifyListeners(); //notificar os listeners da alteração
 
