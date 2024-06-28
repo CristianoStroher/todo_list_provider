@@ -24,5 +24,10 @@ class TasksCreateController extends DefaultChangeNotifier {
 
   //metodo para retornar a data selecionada usamos o get
   // para conseguir acessar o atributo
-  DateTime? get selectedDate => _selectedDate; 
+  DateTime? get selectedDate => _selectedDate;
+
+  void saveTask(String description) {
+    
+
+  } 
 } 

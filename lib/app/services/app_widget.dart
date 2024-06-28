@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:todo_list_provider/app/core/database/sqlite_adm_connection.dart';
 import 'package:todo_list_provider/app/core/navigator/todol_list_navigator.dart';
 import 'package:todo_list_provider/app/core/ui/todo_list_ui_config.dart';
@@ -46,6 +47,13 @@ final sqliteAdmConnection = SqliteAdmConnection();
         // initialRoute: '/login', //rota inicial para o login
         theme: TodoListUiConfig.theme,//!vinculei o tema ao app personalizado
         navigatorKey: TodolListNavigator.navigatorKey, //!vinculei a chave do navigator ao app
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: const [ //adiciona o suporte a localização
+          Locale('pt', 'BR'), //adiciona a localização pt-br
+        ],
         routes: {
           ...AuthModule().routers,//adiciona as rotas do AuthModule
           ...HomeModule().routers, //!adiciona as rotas do HomeModule
