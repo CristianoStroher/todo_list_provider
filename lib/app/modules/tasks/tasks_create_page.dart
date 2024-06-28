@@ -23,18 +23,18 @@ class _TasksCreatePageState extends State<TasksCreatePage> {
   @override
   void initState() {
     super.initState();
-    DefaultListenerNotifier(
-      changeNotifier: widget._controller,
-    ).listener(context: context, sucessCallback: (notifier, listenerInstance) {
-      listenerInstance.dispose();
-      Navigator.pop(context);
+    DefaultListenerNotifier( //adiciona um listener que mostra o loader
+      changeNotifier: widget._controller, //recebe o controller
+    ).listener(context: context, sucessCallback: (notifier, listenerInstance) { //se tiver sucesso
+      listenerInstance.dispose(); //fecha o listener
+      Navigator.pop(context); //fecha a tela
     });
   }
 
   @override
   void dispose() {
-    _descriptionEC.dispose();
-    super.dispose();
+    _descriptionEC.dispose(); //libera a memoria
+    super.dispose(); //chama o dispose do pai
   }
 
   @override

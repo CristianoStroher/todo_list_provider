@@ -26,8 +26,24 @@ class TasksCreateController extends DefaultChangeNotifier {
   // para conseguir acessar o atributo
   DateTime? get selectedDate => _selectedDate;
 
-  void saveTask(String description) {
-    
+  //metodo para salvar a tarefa
+  Future<void> saveTask(String description) async {
+    try {
+      showLoadingAndResetState(); //mostra o loader e reseta o estado
+      notifyListeners(); //notifica os listeners
+      if(_selectedDate !=null) { //se a data for diferente de nulo
+        await _tasksService.saveTask(_selectedDate!, description); //salva a tarefa
+      } else  {
+        setError('Data da task não informada'); //se não tiver data informada
+      }
+}  catch (e, s) {
+  print(e);//imprime o erro
+  print(s); //imprime o erro (caso tenha )
+  setError('Erro ao salvar a tarefa'); //se der erro ao salvar a tarefa
+    } finally {
+      hideLoading(); //esconde o loader
+      notifyListeners(); //notifica os listeners
+}
 
   } 
 } 
