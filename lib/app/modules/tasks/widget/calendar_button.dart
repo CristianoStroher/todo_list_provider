@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
@@ -6,7 +7,10 @@ import 'package:todo_list_provider/app/modules/tasks/tasks_create_controller.dar
 
 class CalendarButton extends StatelessWidget {
 
-  const CalendarButton({ super.key });
+  //formato da data que será exibida. Ela não é nativa do dart e precisamos baixar.
+  final dateFormat = DateFormat('dd/MM/yyyy');
+
+  CalendarButton({ super.key });
 
    @override
    Widget build(BuildContext context) {
@@ -40,8 +44,21 @@ class CalendarButton extends StatelessWidget {
                 onPressed: () {},
               ),
               const SizedBox(width: 5),
-              Text('SELECIONE UMA DATA', style: context.titleStyle,),
-              const SizedBox(width: 15),
+              // leitura do controller task e usar o seletor
+              // para pegar a data selecionada que famos formatar para uma string
+              Selector<TasksCreateController, DateTime?> (
+                selector: (context, controller) => controller.selectedDate,
+                builder: (context, selectedDate, child){
+                  if(selectedDate == null){ //se não tiver data selecionada retorna um texto 
+                    return const Text('Selecione uma Data', style: TextStyle(color: Colors.grey),);
+                  } else {
+                    return Text( //retorna a data formatada
+                      dateFormat.format(selectedDate),
+                      style: context.titleStyle,
+                      );
+                  }
+                }
+              ),              const SizedBox(width: 15),
             ],
           ),
          ),
