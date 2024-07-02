@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
 
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
+import 'package:todo_list_provider/app/models/task_filter_enum.dart';
+import 'package:todo_list_provider/app/models/total_tasks_model.dart';
+import 'package:todo_list_provider/app/modules/home/widgets/task.dart';
 
 class TodoCardFilter extends StatelessWidget {
 
   final String label; //cria uma variável do tipo String para
   // receber um label do widget hoje, amanha e semana. Vamos la substituir.
+  
+  final TaskFilterEnum taskfilter; //cria uma variável do tipo TaskFilterEnum
+  //para receber um filtro de tarefas
 
-  const TodoCardFilter({Key? key, required this.label}) : super(key: key); //construtor da classe
+  final TotalTasksModel? totalTasksModel; //cria uma variável do tipo TotalTasksModel
+
+  const TodoCardFilter({
+    Key? key,
+    required this.label,
+    required this.taskfilter,
+    this.totalTasksModel,
+    }) : super(key: key); //construtor da classe
     
   @override
   Widget build(BuildContext context) {
@@ -35,7 +48,7 @@ class TodoCardFilter extends StatelessWidget {
             CrossAxisAlignment.start, //alinhamento do widget para a esquerda
         children: [
           Text(
-            '10 TASKS',
+            '${totalTasksModel?.totalTasks ?? 0} TASKS', //cria um texto
             style: context.titleStyle.copyWith(
               fontSize: 10,
               color: Colors.white,
