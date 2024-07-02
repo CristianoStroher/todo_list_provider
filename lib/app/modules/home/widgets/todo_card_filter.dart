@@ -28,14 +28,13 @@ class TodoCardFilter extends StatelessWidget {
   //método para calcular a porcentagem de tarefas finalizadas
   double _getPercentFinish() {
     final total = totalTasksModel?.totalTasks ?? 0.0; //pega o total de tarefas
-    final totalfinish = totalTasksModel?.totalTasksFinish ?? 0.0; //
+    final totalfinish = totalTasksModel?.totalTasksFinish ?? 0.1; //
 
-    if (total == 0.0) {
+    if (total == 0) {
       return 0.0;
     }
 
-    final percent = (totalfinish / total) *
-        100; //calcula a porcentagem de tarefas finalizadas
+    final percent = (totalfinish * 100) / total; //calcula a porcentagem de tarefas finalizadas
     return percent / 100; //retorna a porcentagem de tarefas finalizadas
   }
 
