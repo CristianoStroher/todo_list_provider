@@ -72,14 +72,14 @@ class HomePage extends StatelessWidget {
                   ),
                   child: Container( 
                     margin: const EdgeInsets.symmetric(horizontal: 20,), //adiciona uma margem no container
-                    child: const IntrinsicHeight( //cria um widget que serve para limitar o tamanho do widget na altura
+                    child: IntrinsicHeight( //cria um widget que serve para limitar o tamanho do widget na altura
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start, //alinhamento do widget para a esquerda
                         children: [
-                          HeaderHome(), //adiciona o header_home que é um widget que criamos separado
+                          const HeaderHome(), //adiciona o header_home que é um widget que criamos separado
                           FiltersHome(),//adiciona o filters_home que é um widget que criamos separado
-                          HomeWeekFilter(),//adiciona o home_week_filter que é um widget que criamos separado 
-                          HomeTasks(),//adiciona o home_tasks que é um widget que criamos separado
+                          const HomeWeekFilter(),//adiciona o home_week_filter que é um widget que criamos separado 
+                          const HomeTasks(),//adiciona o home_tasks que é um widget que criamos separado
                         ],
                       ),) 
                   ) ,

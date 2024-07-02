@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:path/path.dart';
+
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 
 class TodoCardFilter extends StatelessWidget {
-  const TodoCardFilter({super.key});
 
+  final String label; //cria uma variável do tipo String para
+  // receber um label do widget hoje, amanha e semana. Vamos la substituir.
+
+  const TodoCardFilter({Key? key, required this.label}) : super(key: key); //construtor da classe
+    
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,9 +41,9 @@ class TodoCardFilter extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          const Text( // cria um texto
-            'HOJE',
-            style: TextStyle(
+          Text( // cria um texto
+            label, //define o texto do widget
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.white,
