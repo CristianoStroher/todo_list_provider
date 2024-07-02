@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
@@ -6,22 +8,37 @@ import 'package:todo_list_provider/app/models/total_tasks_model.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/task.dart';
 
 class TodoCardFilter extends StatelessWidget {
-
   final String label; //cria uma variável do tipo String para
   // receber um label do widget hoje, amanha e semana. Vamos la substituir.
-  
+
   final TaskFilterEnum taskfilter; //cria uma variável do tipo TaskFilterEnum
   //para receber um filtro de tarefas
 
-  final TotalTasksModel? totalTasksModel; //cria uma variável do tipo TotalTasksModel
+  final TotalTasksModel?
+      totalTasksModel; //cria uma variável do tipo TotalTasksModel
 
+//construtor da classe
   const TodoCardFilter({
     Key? key,
     required this.label,
     required this.taskfilter,
     this.totalTasksModel,
-    }) : super(key: key); //construtor da classe
-    
+  }) : super(key: key); //construtor da classe
+
+  //método para calcular a porcentagem de tarefas finalizadas
+  double _getPercentFinish() {
+    final total = totalTasksModel?.totalTasks ?? 0.0; //pega o total de tarefas
+    final totalfinish = totalTasksModel?.totalTasksFinish ?? 0.0; //
+
+    if (total == 0.0) {
+      return 0.0;
+    }
+
+    final percent = (totalfinish / total) *
+        100; //calcula a porcentagem de tarefas finalizadas
+    return percent / 100; //retorna a porcentagem de tarefas finalizadas
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -54,7 +71,8 @@ class TodoCardFilter extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          Text( // cria um texto
+          Text(
+            // cria um texto
             label, //define o texto do widget
             style: const TextStyle(
               fontSize: 20,
@@ -63,14 +81,24 @@ class TodoCardFilter extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-          const SizedBox(
-            width: 100, 
+          SizedBox(
+            width: 100,
             height: 5,
-            child: LinearProgressIndicator( //cria um indicador de progresso linear
-              value: .4, //define o valor do indicador de progresso
-              backgroundColor: Colors.yellow, //define a cor de fundo do indicador de progresso
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white), //define a cor do indicador de progresso
-              ),
+            child: TweenAnimationBuilder<double>(
+                tween: Tween(
+                  begin: 0.0, //define o valor inicial da animação
+                  end: _getPercentFinish, //define o valor final da animação
+                ), //define a animação
+                duration:
+                    const Duration(seconds: 1), //define a duração da animação
+                builder: (context, value, child) => LinearProgressIndicator(
+                      //cria um indicador de progresso linear
+                      value: value, //define o valor do indicador de progresso
+                      backgroundColor: Colors
+                          .yellow, //define a cor de fundo do indicador de progresso
+                      valueColor: const AlwaysStoppedAnimation<Color>(Colors
+                          .white), //define a cor do indicador de progresso
+                    )),
           ),
         ],
       ),
