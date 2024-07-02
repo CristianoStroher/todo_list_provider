@@ -5,6 +5,8 @@ import 'package:todo_list_provider/app/models/task_filter_enum.dart';
 import 'package:todo_list_provider/app/models/total_tasks_model.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/todo_card_filter.dart';
 class FiltersHome extends StatelessWidget {
+  const FiltersHome({super.key});
+
     @override
    Widget build(BuildContext context) {
        return Column(

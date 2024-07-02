@@ -89,8 +89,7 @@ class TodoCardFilter extends StatelessWidget {
                   begin: 0.0, //define o valor inicial da animação
                   end: _getPercentFinish(), //define o valor final da animação
                 ), //define a animação
-                duration:
-                    const Duration(seconds: 1), //define a duração da animação
+                duration: const Duration(seconds: 1), //define a duração da animação
                 builder: (context, value, child) => LinearProgressIndicator(
                       //cria um indicador de progresso linear
                       value: value, //define o valor do indicador de progresso
