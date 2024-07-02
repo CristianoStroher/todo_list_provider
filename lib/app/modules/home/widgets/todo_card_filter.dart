@@ -1,11 +1,11 @@
-import 'dart:ffi';
+
 
 import 'package:flutter/material.dart';
 
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/models/task_filter_enum.dart';
 import 'package:todo_list_provider/app/models/total_tasks_model.dart';
-import 'package:todo_list_provider/app/modules/home/widgets/task.dart';
+
 
 class TodoCardFilter extends StatelessWidget {
   final String label; //cria uma variável do tipo String para
@@ -87,7 +87,7 @@ class TodoCardFilter extends StatelessWidget {
             child: TweenAnimationBuilder<double>(
                 tween: Tween(
                   begin: 0.0, //define o valor inicial da animação
-                  end: _getPercentFinish, //define o valor final da animação
+                  end: _getPercentFinish(), //define o valor final da animação
                 ), //define a animação
                 duration:
                     const Duration(seconds: 1), //define a duração da animação
