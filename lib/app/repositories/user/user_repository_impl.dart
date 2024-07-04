@@ -3,9 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:logger/logger.dart';
 import 'package:todo_list_provider/app/exception/auth_exception.dart';
 import './user_repository.dart';
 
+final Logger logger = Logger();
 class UserRepositoryImpl implements UserRepository {
 
   final FirebaseAuth _firebaseAuth; //cria uma instânica do tipo FirebaseAuth
@@ -25,8 +27,7 @@ class UserRepositoryImpl implements UserRepository {
    //vamos tratar o erros no login_page.dart quando chamar esse método
    // e para isso vamos encapsular o método em um try catch.
   } on FirebaseAuthException catch (e, s) {
-    print(e);
-    print(s);
+    logger.e('Erro: $e, Stack Trace: $s');
     if(e.code == 'email-already-in-use') {
       //!como foi depreciado o método fetchSignInMethodsForEmail, vamos fazer a verificação de outra forma.
       //! verificar se o email já está cadastrado no firebase
@@ -66,13 +67,11 @@ class UserRepositoryImpl implements UserRepository {
       final userCredential = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
       return userCredential.user;
     } on PlatformException catch (e, s) { //tratamento de erro de plataforma
-      print(e);
-      print(s);
+      logger.e('Erro: $e, Stack Trace: $s');
       throw AuthException(
         message: e.message ?? 'Erro ao realizar login');
     } on FirebaseAuthException catch (e, s) { //tratamento de erro do firebase
-      print(e);
-      print(s);
+      logger.e('Erro: $e, Stack Trace: $s');
       if(e.code == 'user-not-found' || e.code == 'wrong-password'){
         throw AuthException(
           message: 'E-mail ou senha inválidos');
@@ -98,8 +97,7 @@ class UserRepositoryImpl implements UserRepository {
         message: 'E-mail não cadastrado.');
       }
     } on PlatformException catch (e, s) {
-      print(e);
-      print(s);
+      logger.e('Erro: $e, Stack Trace: $s'); //se der erro ele mostra o erro
       throw AuthException(
         message: e.message ?? 'Erro ao recuperar senha');
   }
@@ -129,8 +127,7 @@ class UserRepositoryImpl implements UserRepository {
     }
   }
 } on FirebaseAuthException catch (e, s) {
-  print(e);
-  print(s);
+  logger.e('Erro: $e, Stack Trace: $s'); //se der erro ele mostra o erro
   if(e.code == 'account-exists-with-different-credential') {  //essa mensagem é padrão do firebase de que a conta já existe com um provedor diferente
     throw AuthException(
       message: '''E-mail já cadastrado, utilize o login com os seguintes provedores: ${loginMethods?.join(', ')}'''); //se o email já estiver cadastrado ele mostra a mensagem com os provedores que já estão cadastrados como facebook, google, etc.
