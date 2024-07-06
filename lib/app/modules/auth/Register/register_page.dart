@@ -39,10 +39,10 @@ class _RegisterPageState extends State<RegisterPage> {
    defaultListener.listener(context: context,//chamou o listener
    sucessCallback: (notifier, listenerInstance){//chamou o callback de sucesso
       listenerInstance.dispose();//chamou o dispose
-      Navigator.of(context).pop();//fecha a tela de cadastro e volta ao login
+      // Navigator.of(context).pop();//fecha a tela de cadastro e volta ao login
     },
     errorCallback: (notifier, listenerInstance) {
-      print('deu ruim!!!');
+      //print('deu ruim!!!');
     },//chamou o callback de erro
     );
    

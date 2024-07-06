@@ -28,7 +28,7 @@ class AuthProvider extends ChangeNotifier {
   //metodo para escutar as mudanças dentro do firebase Auth
   void loadListener() {
     _firebaseAuth.userChanges().listen((_) => notifyListeners()); //escuta as mudanças no userchange do firebase Auth e notifica os linesteres
-    _firebaseAuth.idTokenChanges().listen((user) {
+    _firebaseAuth.authStateChanges().listen((user) { //trocado para authStateChanges para evitar problemas com o firebase
       if (user != null) {
         TodolListNavigator.to
          .pushNamedAndRemoveUntil('/home', (route) => false); //se o usuário for diferente de nulo, ele navega para a tela home e remove todas as outras telas

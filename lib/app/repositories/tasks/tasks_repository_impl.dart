@@ -1,5 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:todo_list_provider/app/core/database/sqlite_connection_factory.dart';
+import 'package:todo_list_provider/app/models/tasks_model.dart';
 import 'package:todo_list_provider/app/repositories/tasks/tasks_repository.dart';
 
 
@@ -31,6 +32,30 @@ class TasksRepositoryImpl implements TasksRepository {
     );
 
     
+  }
+  //subscrevemos o metodo findByPeriod da interface TasksResository para buscar no banco de dados
+  @override
+  Future<List<TasksModel>> findByPeriod(DateTime start, DateTime end) async {
+  final sartFilter = DateTime(start.year, start.month, start.day, 0,0,0); //cria um filtro de data inicial 
+  final endFilter = DateTime(end.year, end.month, end.day, 23,59,59); //cria um filtro de data final
+  
+  final conn = await _sqliteConnectionFactory.openConnection(); //abre a conexão com o banco de dados
+  //faz a query no banco de dados
+  final result = await conn.rawQuery(''' 
+      SELECT *
+       FROM todo
+       WHERE data_hora BETWEEN ? AND ?
+       ORDER BY data_hora
+       ''', [
+        sartFilter.toIso8601String(), //converte a data inicial para string
+        endFilter.toIso8601String()], //converte a data final para string
+  ); //faz a query no banco de dados
+
+  //retorna a lista de tarefas numa lista de TasksModel
+  // usando a fabrica de tarefas do arquivo tasks_model.dart
+  return result.map((e) => TasksModel.loadFromDB(e)).toList(); //retorna a lista de tarefas
+  
+  
   }
 
 }
