@@ -26,19 +26,23 @@ class FiltersHome extends StatelessWidget {
                 TodoCardFilter(
                   label: 'Hoje'.toUpperCase(), //define o texto do widget
                   taskfilter: TaskFilterEnum.today, //enum do filtro de tarefas
-                  totalTasksModel: TotalTasksModel(totalTasks: 10, totalTasksFinish: 5), //cria um objeto do tipo TotalTasksModel
+                  totalTasksModel:
+                    context.select<HomeController, TotalTasksModel?>(
+                      (controller) => controller.todayTotalTasks), //cria um objeto do tipo TotalTasksModel
                   selected: context.select<HomeController, TaskFilterEnum>((value) => value.filterSelected) == TaskFilterEnum.today, //verifica se o filtro selecionado é o de hoje
                   ), //adiciona o todo_card_filter que é um widget que criamos separado
                 TodoCardFilter(
                   label: 'Amanhã'.toUpperCase(),
                   taskfilter: TaskFilterEnum.tomorrow,
-                  totalTasksModel: TotalTasksModel(totalTasks: 5, totalTasksFinish: 2),
+                  totalTasksModel: context.select<HomeController, TotalTasksModel?>(
+                      (controller) => controller.tomorrowTotalTasks),
                   selected: context.select<HomeController, TaskFilterEnum>((value) => value.filterSelected) == TaskFilterEnum.tomorrow,
                   ),
                 TodoCardFilter(
                   label: 'Semana'.toUpperCase(),
                   taskfilter: TaskFilterEnum.week,
-                  totalTasksModel: TotalTasksModel(totalTasks: 10, totalTasksFinish: 5),
+                  totalTasksModel: context.select<HomeController, TotalTasksModel?>(
+                      (controller) => controller.weekTotalTasks),
                   selected: context.select<HomeController, TaskFilterEnum>((value) => value.filterSelected) == TaskFilterEnum.week,
                 ),
                       

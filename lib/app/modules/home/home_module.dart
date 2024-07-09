@@ -33,6 +33,6 @@ class HomeModule extends TodoListModule {
                           .read())), //lista de bindings que serve para injetar dependências
             ], //lista de bindings que serve para injetar dependências
             routers: {
-              '/home': (context) => const HomePage(), //rota para a Home Page
+              '/home': (context) => HomePage(homeController: context.read(),), //rota para a Home Page
             });
 }

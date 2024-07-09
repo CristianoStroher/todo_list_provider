@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/core/ui/todo_list_icons.dart';
+import 'package:todo_list_provider/app/modules/home/home_controller.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/filters_home.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/header_home.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_drawer.dart';
@@ -10,9 +11,25 @@ import 'package:todo_list_provider/app/modules/home/widgets/home_week_filter.dar
 
 import 'package:todo_list_provider/app/modules/tasks/tasks_module.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
 
-  const HomePage({ super.key });
+  final HomeController _homeController;
+
+  const HomePage({ Key? key, required HomeController homeController}) :
+    _homeController = homeController, //cria um construtor para a classe HomePage
+    super(key: key); //cria um construtor para a classe HomePage
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  @override
+  void initState() {
+   super.initState();
+   widget._homeController.loadTotalTasks(); //chama a função loadTotalTasks do homeController
+  }
 
   void _gotoCreateTask( BuildContext context) {
     //  Navigator.of(context).pushNamed('/tasks/create'); //vai para a pagina de criar tarefa
@@ -31,10 +48,8 @@ class HomePage extends StatelessWidget {
         ); //vai para a pagina de criar task
       // MaterialPageRoute(
       // builder: (_) => TasksModule().getPage('/task/create', context),));  //vai para a pagina de criar task 
-  }  //cria uma função para ir para a pagina Task
-
-
-
+  }  
+  //cria uma função para ir para a pagina Task
    @override
    Widget build(BuildContext context) {
        return Scaffold(
