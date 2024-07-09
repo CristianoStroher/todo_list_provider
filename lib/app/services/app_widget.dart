@@ -50,6 +50,7 @@ final sqliteAdmConnection = SqliteAdmConnection();
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: const [ //adiciona o suporte a localização
           Locale('pt', 'BR'), //adiciona a localização pt-br

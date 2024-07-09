@@ -9,7 +9,7 @@ class HomeController extends DefaultChangeNotifier {
   final TasksService _tasksService; 
 
   //cria um construtor que recebe um parametro do tipo TasksService
-  HomeController({ required TasksService tasksService})
+  HomeController({ required TasksService tasksService })
    : _tasksService = tasksService; 
 
   var filterSelected = TaskFilterEnum.today; //cria uma variável do tipo TaskFilterEnum e atribui o valor today
