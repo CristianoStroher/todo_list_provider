@@ -30,17 +30,19 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
    super.initState();
-   DefaultListenerNotifier(changeNotifier: widget._homeController).listener( //cria um listener para escutar as mudanças no homeController
+   //cria um listener para o homeController usando o DefaultListenerNotifier com a função listener
+   DefaultListenerNotifier(changeNotifier: widget._homeController).listener( 
     context: context, //contexto da tela
     sucessCallback: (notifier, listenerInstance) { //callback de sucesso
       listenerInstance.dispose(); //remove o listener
     },
-    ); //cria uma instancia do listenerNotifier para o homeController e chama o listener para mostrar o loader
+    ); 
+    //cria uma instancia do listenerNotifier para o homeController e chama o listener para mostrar o loader
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) { //
       widget._homeController.loadTotalTasks(); //chama o método para carregar as tarefas depois que a tela é construída
       widget._homeController.findTasks(filter: TaskFilterEnum.today); //chama o método para buscar as tarefas do dia atual depois que a tela é construída
     });
-    } //cria um listener para o homeController
+    } 
   
   
 

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
+import 'package:todo_list_provider/app/models/task_filter_enum.dart';
+import 'package:todo_list_provider/app/models/tasks_model.dart';
+import 'package:todo_list_provider/app/modules/home/home_controller.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/task.dart';
 
 class HomeTasks extends StatelessWidget {
@@ -9,26 +13,32 @@ class HomeTasks extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Text(
-              'TASK\'S DE HOJE',
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Selector<HomeController, String>(
+          selector: (context, controller) {
+            return controller.filterSelected.description;
+          },
+          builder: (context, value, child) {
+            return Text(
+              'TASK\'S $value',
               style: context.titleStyle,
-            ),
-            const Column(
-              children: [
-                Task(),
-                Task(),
-                Task(),
-                Task(),
-                Task(),
-                Task(),
-          ],
+            );
+          },
+        ),
+        Column(
+          children: context //cria uma coluna de tarefas
+              .select<HomeController, List<TasksModel>>( //seleciona as tarefas
+                (controller) => controller.filteredTasks, //seleciona as tarefas filtradas
+              )
+              .map((t) => Task(model: t,)) //mapeia as tarefas e cria um item de lista para cada tarefa
+              .toList(), //converte as tarefas em uma lista
         )
       ],
-    ));
+    )
+  );
   }
 }

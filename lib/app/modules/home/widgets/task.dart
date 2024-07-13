@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:todo_list_provider/app/models/tasks_model.dart';
 
 class Task extends StatelessWidget {
-
-  const Task({ super.key });
+  final TasksModel model; //cria uma variável do tipo TasksModel para receber o modelo de tarefas.
+  // Assim cada item de lista terá um modelo de tarefas
+  final dateFormat = DateFormat('dd/MM/yyyy'); //cria uma variável do tipo DateFormat para formatar a data
+  Task({ super.key, required this.model});
 
    @override
    Widget build(BuildContext context) {
@@ -18,19 +22,19 @@ class Task extends StatelessWidget {
             child: ListTile(//cria um item de lista
               contentPadding: const EdgeInsets.all(8),
               leading: Checkbox(
-                value: true, //adiciona um checkbox
+                value: model.finished, //adiciona um checkbox
                 onChanged: (value) {}, //adiciona uma função para o checkbox
               ),
-              title: const Text(
-                'Descrição da Tarefa',
-                 style: TextStyle(
+              title: Text(
+                 model.description,
+                 style: const TextStyle(
                   decoration: TextDecoration.lineThrough,//adiciona uma linha no texto
                   //! aqui vamos implementar assim false ? Textdecoartion.lineThrough : null,
                   //! para que a linha só apareça quando o checkbox for true
                   ),),
-              subtitle: const Text(
-                '10/10/2021',
-                style: TextStyle(
+              subtitle: Text(
+                dateFormat.format(model.dateTime), //adiciona a data formatada no item de lista
+                style: const TextStyle(
                   decoration: TextDecoration.lineThrough,//adiciona uma linha no texto
                   //! aqui vamos implementar assim false ? Textdecoartion.lineThrough : null,
                   //! para que a linha só apareça quando o checkbox for true
