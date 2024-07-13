@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_provider/app/core/notifier/default_listener_notifier.dart';
 
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/core/ui/todo_list_icons.dart';
+import 'package:todo_list_provider/app/models/task_filter_enum.dart';
 import 'package:todo_list_provider/app/modules/home/home_controller.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/filters_home.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/header_home.dart';
@@ -20,7 +22,7 @@ class HomePage extends StatefulWidget {
     super(key: key); //cria um construtor para a classe HomePage
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -28,8 +30,19 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
    super.initState();
-   widget._homeController.loadTotalTasks(); //chama a função loadTotalTasks do homeController
-  }
+   DefaultListenerNotifier(changeNotifier: widget._homeController).listener( //cria um listener para escutar as mudanças no homeController
+    context: context, //contexto da tela
+    sucessCallback: (notifier, listenerInstance) { //callback de sucesso
+      listenerInstance.dispose(); //remove o listener
+    },
+    ); //cria uma instancia do listenerNotifier para o homeController e chama o listener para mostrar o loader
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) { //
+      widget._homeController.loadTotalTasks(); //chama o método para carregar as tarefas depois que a tela é construída
+      widget._homeController.findTasks(filter: TaskFilterEnum.today); //chama o método para buscar as tarefas do dia atual depois que a tela é construída
+    });
+    } //cria um listener para o homeController
+  
+  
 
   void _gotoCreateTask( BuildContext context) {
     //  Navigator.of(context).pushNamed('/tasks/create'); //vai para a pagina de criar tarefa
