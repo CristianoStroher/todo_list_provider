@@ -27,15 +27,15 @@ class Task extends StatelessWidget {
               ),
               title: Text(
                  model.description,
-                 style: const TextStyle(
-                  decoration: TextDecoration.lineThrough,//adiciona uma linha no texto
+                 style: TextStyle(
+                  decoration: model.finished ? TextDecoration.lineThrough : null,//adiciona uma linha no texto
                   //! aqui vamos implementar assim false ? Textdecoartion.lineThrough : null,
                   //! para que a linha só apareça quando o checkbox for true
                   ),),
               subtitle: Text(
                 dateFormat.format(model.dateTime), //adiciona a data formatada no item de lista
-                style: const TextStyle(
-                  decoration: TextDecoration.lineThrough,//adiciona uma linha no texto
+                style: TextStyle(
+                  decoration: model.finished ? TextDecoration.lineThrough : null,//adiciona uma linha no texto
                   //! aqui vamos implementar assim false ? Textdecoartion.lineThrough : null,
                   //! para que a linha só apareça quando o checkbox for true
                 ),

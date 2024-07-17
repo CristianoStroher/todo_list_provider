@@ -46,9 +46,9 @@ class _HomePageState extends State<HomePage> {
   
   
 
-  void _gotoCreateTask( BuildContext context) {
+  Future<void> _gotoCreateTask( BuildContext context) async {
     //  Navigator.of(context).pushNamed('/tasks/create'); //vai para a pagina de criar tarefa
-    Navigator.of(context).push(
+    await Navigator.of(context).push(
       PageRouteBuilder( //cria uma rota para ir para a pagina de criar task
         transitionDuration:const Duration(milliseconds: 400), //duração da transição da pagina
         transitionsBuilder: (context, animation, secundaryAnimation, child) { //cria uma animação na transição da pagina
@@ -63,7 +63,9 @@ class _HomePageState extends State<HomePage> {
         ); //vai para a pagina de criar task
       // MaterialPageRoute(
       // builder: (_) => TasksModule().getPage('/task/create', context),));  //vai para a pagina de criar task 
+      widget._homeController.refreshPage(); //chama o método para atualizar a pagina;
   }  
+
   //cria uma função para ir para a pagina Task
    @override
    Widget build(BuildContext context) {

@@ -16,7 +16,7 @@ class HomeController extends DefaultChangeNotifier {
   TotalTasksModel? weekTotalTasks; //cria uma variável do tipo TotalTasksModel para receber as tarefas da semana
   List<TasksModel> alltasks = []; //cria uma lista de tarefas vazia para receber as tarefas
   List<TasksModel> filteredTasks = []; //cria uma lista de tarefas vazia para receber as tarefas filtradas
-
+  DateTime? initialDateOfWeek; //cria uma variável do tipo DateTime para receber a data inicial da semana
 
   //cria um construtor que recebe um parametro do tipo TasksService
   HomeController({ required TasksService tasksService })
@@ -72,9 +72,10 @@ class HomeController extends DefaultChangeNotifier {
         tasks = await _tasksService.getTomorrow(); //busca as tarefas de amanhã
         break;
       case TaskFilterEnum.week: //caso seja semana
-        // final weekModel = await _tasksService.getWeek(); //busca as tarefas da semana
-        // tasks = weekModel.tasks; //atribui as tarefas da semana
-        tasks = await _tasksService.getWeek().then((value) => value.tasks); //busca as tarefas da semana
+        final weekModel = await _tasksService.getWeek(); //busca as tarefas da semana
+        tasks = weekModel.tasks; //atribui as tarefas da semana
+        /* tasks = await _tasksService.getWeek().then((value) => value.tasks); */ //busca as tarefas da semana
+        initialDateOfWeek = weekModel.startDate; //atribui a data inicial da semana
         break; // mesma coisa de cima apresentado pelo chat gpt ( é menos entedivel)
     }
 
@@ -83,6 +84,12 @@ class HomeController extends DefaultChangeNotifier {
     hideLoading(); //esconde o loading
     notifyListeners(); //notifica os ouvintes
   
+  }
+
+  Future<void> refreshPage() async {
+    await findTasks(filter: filterSelected); //chama o método para buscar as tarefas
+    await loadTotalTasks(); //chama o método para carregar as tarefas totais
+    notifyListeners(); //notifica os ouvintes
   }
 
 }

@@ -27,21 +27,23 @@ class HomeWeekFilter extends StatelessWidget {
           ),
           SizedBox(
             height: 95,
-            child: DatePicker( //cria um datepicker para selecionar a data
-              DateTime.now(), //data inicial do datepicker que é hoje
-              initialSelectedDate: DateTime.now(), //data inicial selecionada que é hoje
-              selectionColor: context.primaryColor, //cor da seleção do datepicker
-              selectedTextColor: Colors.white, //cor do texto selecionado
-              locale: 'pt_BR', //linguagem do datepicker que é br 
-              daysCount: 7, //quantidade de dias que o datepicker vai mostrar
-              monthTextStyle: const TextStyle(fontSize: 8), //estilo do texto do mês 
-              dayTextStyle: const TextStyle(fontSize: 13), //estilo do texto do dia
-              dateTextStyle: const TextStyle(fontSize: 13), //estilo do texto da data
-              onDateChange: (date) { //metodo que é chamado quando a data é alterada
-                // New date selected
-              },
-      
-            ),
+            child: Selector<HomeController, DateTime>(
+              selector: (context, controller) => controller.initialDateOfWeek ?? DateTime.now(),
+              builder: (_, value, __) {
+                return DatePicker( //cria um datepicker para selecionar a data
+                  value, //data inicial do datepicker que é hoje
+                  height: 2, //altura do datepicker
+                  initialSelectedDate: value, //data inicial selecionada é o valor da data inicial da semana 
+                  selectionColor: context.primaryColor, //cor da seleção do datepicker
+                  selectedTextColor: Colors.white, //cor do texto selecionado
+                  locale: 'pt_BR', //linguagem do datepicker que é br 
+                  daysCount: 7, //quantidade de dias que o datepicker vai mostrar
+                  monthTextStyle: const TextStyle(fontSize: 8), //estilo do texto do mês 
+                  dayTextStyle: const TextStyle(fontSize: 13), //estilo do texto do dia
+                  dateTextStyle: const TextStyle(fontSize: 13), //estilo do texto da data
+                           
+                );
+              },)
       
           )
         ],
