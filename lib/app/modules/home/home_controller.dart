@@ -17,6 +17,7 @@ class HomeController extends DefaultChangeNotifier {
   List<TasksModel> alltasks = []; //cria uma lista de tarefas vazia para receber as tarefas
   List<TasksModel> filteredTasks = []; //cria uma lista de tarefas vazia para receber as tarefas filtradas
   DateTime? initialDateOfWeek; //cria uma variável do tipo DateTime para receber a data inicial da semana
+  DateTime? selectedDay; //cria uma variável do tipo DateTime para receber a data selecionada
 
   //cria um construtor que recebe um parametro do tipo TasksService
   HomeController({ required TasksService tasksService })
@@ -81,9 +82,22 @@ class HomeController extends DefaultChangeNotifier {
 
     filteredTasks = tasks; //atribui as tarefas filtradas
     alltasks = tasks; //atribui todas as tarefas
+
+    if(filter == TaskFilterEnum.week) { //verifica se o filtro é semana
+      if(initialDateOfWeek != null) { //verifica se a data inicial da semana é diferente de nulo
+        filterByDay(initialDateOfWeek!); //filtra as tarefas pela data inicial da semana
+      } 
+    }
+
     hideLoading(); //esconde o loading
     notifyListeners(); //notifica os ouvintes
   
+  }
+
+  void filterByDay(DateTime date){
+   selectedDay = date; //atribui a data selecionada
+    filteredTasks = alltasks.where((task) => task.dateTime == date).toList(); //filtra as tarefas pela data selecionada
+    notifyListeners(); //notifica os ouvintes
   }
 
   Future<void> refreshPage() async {
