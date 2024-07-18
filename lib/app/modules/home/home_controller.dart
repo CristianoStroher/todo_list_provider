@@ -83,10 +83,15 @@ class HomeController extends DefaultChangeNotifier {
     filteredTasks = tasks; //atribui as tarefas filtradas
     alltasks = tasks; //atribui todas as tarefas
 
+    //!corrigido o bug de não mostrar as tarefas da semana
     if(filter == TaskFilterEnum.week) { //verifica se o filtro é semana
-      if(initialDateOfWeek != null) { //verifica se a data inicial da semana é diferente de nulo
+      if(selectedDay != null) { //verifica se a data selecionada é diferente de nulo
+        filterByDay(selectedDay!); //filtra as tarefas pela data selecionada
+      } else if(initialDateOfWeek != null) { //verifica se a data inicial da semana é diferente de nulo
         filterByDay(initialDateOfWeek!); //filtra as tarefas pela data inicial da semana
       } 
+    }else {
+      selectedDay = null; //atribui nulo para a data selecionada
     }
 
     hideLoading(); //esconde o loading
