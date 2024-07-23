@@ -54,6 +54,13 @@ class TasksServiceImpl implements TasksService {
       ); //retorna as tarefas da semana
   
   }
+  
+  //usamos o método checkOrUncheckTask da interface TasksService para implementar
+  // e checar ou deschecar a tarefa.
+  @override
+  Future<void> checkOrUncheckTask(TasksModel task) {
+    return _tasksRepository.checkOrUncheckTask(task);
+  }
 
 }
 

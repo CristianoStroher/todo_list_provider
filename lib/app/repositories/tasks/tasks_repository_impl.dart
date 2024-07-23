@@ -57,5 +57,20 @@ class TasksRepositoryImpl implements TasksRepository {
   
   
   }
+  //subscrevemos o metodo checkOrUncheckTask da interface TasksResository para checar no banco de dados
+  @override
+  Future<void> checkOrUncheckTask(TasksModel task) async {
+    final conn =await _sqliteConnectionFactory.openConnection(); //abre a conexão com o banco de dados
+    final finished = task.finished ? 1 : 0; //se a tarefa for finalizada recebe 1 senão 0
+
+  //atualiza a tarefa no banco de dados e seta o valor de finalizado
+    await conn.rawUpdate(''' //
+      UPDATE todo
+      SET finalizado = ?
+      WHERE id = ?
+    ''', [finished, task.id]);
+  
+  }
+  
 
 }

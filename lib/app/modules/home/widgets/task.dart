@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list_provider/app/models/tasks_model.dart';
+import 'package:todo_list_provider/app/modules/home/home_controller.dart';
 
 class Task extends StatelessWidget {
   final TasksModel model; //cria uma variável do tipo TasksModel para receber o modelo de tarefas.
@@ -23,7 +25,8 @@ class Task extends StatelessWidget {
               contentPadding: const EdgeInsets.all(8),
               leading: Checkbox(
                 value: model.finished, //adiciona um checkbox
-                onChanged: (value) {}, //adiciona uma função para o checkbox
+                onChanged: (value) => context.read<HomeController>().checkOrUncheckTask(model), //adiciona uma função para o checkbox
+                //nesse caso, quando o checkbox for clicado, a função checkOrUncheckTask será chamada
               ),
               title: Text(
                  model.description,

@@ -9,6 +9,7 @@ abstract interface class TasksService {
   Future<List<TasksModel>> getToday();
   Future<List<TasksModel>> getTomorrow();
   Future<WeekTaskModel> getWeek(); //criamos o metodo para buscar as tarefas da semana
+  Future<void> checkOrUncheckTask(TasksModel task); //criamos o metodo para checar ou deschecar a tarefa
 
 
 }

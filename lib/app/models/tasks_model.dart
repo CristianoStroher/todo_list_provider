@@ -24,4 +24,19 @@ class TasksModel {
     );
   }
 
+
+  //usando o pluguin copyWith para copiar o objeto e alterar apenas o que for necessário
+  TasksModel copyWith({
+    int? id,
+    String? description,
+    DateTime? dateTime,
+    bool? finished,
+  }) {
+    return TasksModel(
+      id: id ?? this.id,
+      description: description ?? this.description,
+      dateTime: dateTime ?? this.dateTime,
+      finished: finished ?? this.finished,
+    );
+  }
 } 
