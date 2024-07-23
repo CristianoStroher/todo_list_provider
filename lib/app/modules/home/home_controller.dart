@@ -95,8 +95,10 @@ class HomeController extends DefaultChangeNotifier {
     }else {
       selectedDay = null; //atribui nulo para a data selecionada
     }
-    if(!showFinishedTasks) { //verifica se não mostra as tarefas finalizadas
-      filteredTasks = filteredTasks.where((task) => !task.finished).toList(); //filtra as tarefas que não estão finalizadas
+
+    if(!showFinishedTasks) { //verifica se as tareras finalizadas não estão sendo mostradas
+      filteredTasks = filteredTasks.where((task) => !task.finished).toList(); // o filterTasks recebe as tarefas
+      //que não estão finalizadas através do método where onde a tarefa é diferente de finalizada.
     }
 
     hideLoading(); //esconde o loading
@@ -130,7 +132,7 @@ class HomeController extends DefaultChangeNotifier {
 
   void showOrHidefinishedTasks() {
     showFinishedTasks = !showFinishedTasks; //filtra as tarefas que não estão finalizadas invertendo o valor
-    refreshPage(); //notifica os ouvintes
+    refreshPage(); //chama o método para atualizar a página
   }
 
 }

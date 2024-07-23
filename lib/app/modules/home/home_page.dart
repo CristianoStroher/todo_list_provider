@@ -84,7 +84,10 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (_) => [ // cria os itens do menu
                   PopupMenuItem<bool>(
                     value: true, 
-                    child: Text('${widget._homeController.showFinishedTasks ? 'Esconder' : 'Mostrar'} tarefas concluídas'), //cria um item do menu
+                    child: Text(  //cria um texto no item do menu onde se estiver
+                    //mostrando as tarefas finalizadas, o texto será esconder tarefas finalizadas
+                      '${widget._homeController.showFinishedTasks ? 'Esconder' : 'Mostrar'} tarefas concluídas'
+                      ), //cria um item do menu
                   ),
                 ],
               ),
