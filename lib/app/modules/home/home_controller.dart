@@ -18,6 +18,8 @@ class HomeController extends DefaultChangeNotifier {
   List<TasksModel> filteredTasks = []; //cria uma lista de tarefas vazia para receber as tarefas filtradas
   DateTime? initialDateOfWeek; //cria uma variável do tipo DateTime para receber a data inicial da semana
   DateTime? selectedDay; //cria uma variável do tipo DateTime para receber a data selecionada
+  bool showFinishedTasks = false; //!cria uma variável do tipo booleano para mostrar as tarefas finalizadas,
+  //!por padrão ela é falsa, ou seja, não mostra as tarefas finalizadas
 
   //cria um construtor que recebe um parametro do tipo TasksService
   HomeController({ required TasksService tasksService })
@@ -93,6 +95,9 @@ class HomeController extends DefaultChangeNotifier {
     }else {
       selectedDay = null; //atribui nulo para a data selecionada
     }
+    if(!showFinishedTasks) { //verifica se não mostra as tarefas finalizadas
+      filteredTasks = filteredTasks.where((task) => !task.finished).toList(); //filtra as tarefas que não estão finalizadas
+    }
 
     hideLoading(); //esconde o loading
     notifyListeners(); //notifica os ouvintes
@@ -121,6 +126,11 @@ class HomeController extends DefaultChangeNotifier {
     await _tasksService.checkOrUncheckTask(taskUpdated); //chama o método para atualizar a tarefa
     hideLoading(); //esconde o loading
     refreshPage(); //chama o método para atualizar a página
+  }
+
+  void showOrHidefinishedTasks() {
+    showFinishedTasks = !showFinishedTasks; //filtra as tarefas que não estão finalizadas invertendo o valor
+    refreshPage(); //notifica os ouvintes
   }
 
 }

@@ -77,8 +77,14 @@ class _HomePageState extends State<HomePage> {
             actions: [
               PopupMenuButton( //cria um menu popup no appbar para filtrar as tarefas
                 icon: const Icon(TodoListIcons.filter), //pegamos o icone do filter atraves do arquivo todo_list_icons.dart
+                onSelected: (value){
+                  widget._homeController.showOrHidefinishedTasks(); //chama a função para mostrar ou esconder as tarefas finalizadas
+                      
+                },
                 itemBuilder: (_) => [ // cria os itens do menu
-                  const PopupMenuItem<bool>(child: Text('Mostrar tarefas concluídas'), //cria um item do menu
+                  PopupMenuItem<bool>(
+                    value: true, 
+                    child: Text('${widget._homeController.showFinishedTasks ? 'Esconder' : 'Mostrar'} tarefas concluídas'), //cria um item do menu
                   ),
                 ],
               ),

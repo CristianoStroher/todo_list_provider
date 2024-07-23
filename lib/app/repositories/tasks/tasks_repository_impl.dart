@@ -64,7 +64,7 @@ class TasksRepositoryImpl implements TasksRepository {
     final finished = task.finished ? 1 : 0; //se a tarefa for finalizada recebe 1 senão 0
 
   //atualiza a tarefa no banco de dados e seta o valor de finalizado
-    await conn.rawUpdate(''' //
+    await conn.rawUpdate('''
       UPDATE todo
       SET finalizado = ?
       WHERE id = ?
