@@ -9,9 +9,7 @@ class HeaderHome extends StatelessWidget {
 
    @override
    Widget build(BuildContext context) {
-       return Row(
-        children: [
-          Padding(
+       return Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Selector<AuthProvider, String>( //esse widget serve para pegar um valor do provider e atualizar o widget quando esse valor mudar
               selector: (context, authProvider) => authProvider.user?.displayName ?? "Não Informado", //esse é o valor que vamos pegar do provider
@@ -26,10 +24,9 @@ class HeaderHome extends StatelessWidget {
                 );
             },           
                      ),
-          ),
-        ],
+          );
 
 
-       );
+       
   }
 }
